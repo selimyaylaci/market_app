@@ -73,8 +73,7 @@ class _HomePageState extends State<HomePage> {
                                   () => Text(
                                     // countController.count.toString(),
                                     //countController.counts[index].toString(),
-                                    // countController.snacks[index].toString(),
-                                    "dasdas",
+                                     countController.snacks[index].toString(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
