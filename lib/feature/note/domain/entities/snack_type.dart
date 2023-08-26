@@ -112,13 +112,3 @@ extension SnackTypeExtension on SnackType {
     }
   }
 }
-
-
-class Product1{
-  final List<SnackType> createSnack = [SnackType.values.single];
-
-  void addSnack1(SnackType snack){
-    //createSnack.add(snack);
-    SnackType.values.add(snack);
-  }
-}

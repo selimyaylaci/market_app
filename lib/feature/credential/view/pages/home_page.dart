@@ -1,5 +1,6 @@
 import 'package:market_app/feature/credential/view/pages/product_page.dart';
 import 'package:market_app/feature/note/_note_exports.dart';
+import 'package:market_app/feature/note/domain/entities/arguments/create_snack_params.dart';
 import '../../../../core/_core_exports.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: SnackType.values.length,
                 itemBuilder: (context, index) {
                   final signle = SnackType.values[index];
+                  final abc = countController.snack[index];
                   return ListTile(
                     title: Column(
                       children: [
@@ -63,7 +65,8 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                    countController.countAdd(index);
+                                    //countController.countAdd(index);
+                                    addList(abc);
                                   },
                                   backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                   heroTag: null,
@@ -73,13 +76,14 @@ class _HomePageState extends State<HomePage> {
                                   () => Text(
                                     // countController.count.toString(),
                                     //countController.counts[index].toString(),
-                                     countController.snacks[index].toString(),
+                                    countController.snack[index].toString(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                    countController.countRemove(index);
+                                   // countController.countRemove();
+                                   removeList(abc);
                                   },
                                   backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                   heroTag: null,
@@ -109,5 +113,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+  void addList(CreateSnackParams product){
+    countController.countAdd( product);
+  }
+  void removeList(CreateSnackParams product){
+    countController.countAdd( product);
   }
 }
