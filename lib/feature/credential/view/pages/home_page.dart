@@ -40,8 +40,7 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                 itemCount: SnackType.values.length,
                 itemBuilder: (context, index) {
-                  final signle = SnackType.values[index];
-                  final abc = countController.snack[index];
+                  final SnackType snackType = SnackType.values[index];
                   return ListTile(
                     title: Column(
                       children: [
@@ -58,15 +57,21 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.red,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Image.asset(signle.toImage),
+                              child: Image.asset(snackType.toImage),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                    //countController.countAdd(index);
-                                    addList(abc);
+                                    countController.countAdd(
+                                      CreateSnackParams(
+                                        id: snackType.toId.toString(),
+                                        name: snackType.toText,
+                                        price: snackType.toPrice.toString(),
+                                        quantity: 1.obs,
+                                      ),
+                                    );
                                   },
                                   backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                   heroTag: null,
@@ -74,16 +79,16 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Obx(
                                   () => Text(
-                                    // countController.count.toString(),
-                                    //countController.counts[index].toString(),
-                                    countController.snack[index].toString(),
+                                   
+                                    countController.snackList[index].quantity.toString(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                   // countController.countRemove();
-                                   removeList(abc);
+                                     countController.countRemove(
+                                      snackType.toId.toString(),
+                                    );
                                   },
                                   backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                   heroTag: null,
@@ -96,13 +101,13 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Text(
-                          signle.toPrice.toString(),
+                          snackType.toPrice.toString(),
                           style: const TextStyle(
                             color: Colors.deepPurple,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(signle.toText),
+                        Text(snackType.toText),
                       ],
                     ),
                   );
@@ -114,10 +119,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  void addList(CreateSnackParams product){
-    countController.countAdd( product);
-  }
-  void removeList(CreateSnackParams product){
-    countController.countAdd( product);
-  }
 }
+// 2 farklı listen olsun secilenler ve ürün listen

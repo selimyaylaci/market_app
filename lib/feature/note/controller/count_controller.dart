@@ -1,56 +1,67 @@
 import 'package:market_app/feature/note/domain/entities/arguments/create_snack_params.dart';
 import '../../../core/_core_exports.dart';
+import '../domain/entities/snack_type.dart';
 
 class CountController extends GetxController {
-  // counts
-  //List<RxInt> counts = [];
-  List<CreateSnackParams> snacks = [];
+  // list
+  List<CreateSnackParams> snackList = [];
+  //List<CreateSnackParams> snacks = [];
   //final List<CreateSnackParams> snack = [];
   //RxList<CreateSnackParams> snack = <CreateSnackParams>[].obs;
-  RxList<CreateSnackParams> snack = <CreateSnackParams>[].obs;
+  RxList<CreateSnackParams> selectedSnackList = <CreateSnackParams>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    //counts = List.generate(SnackType.values.length, (index) => 0.obs);
-    /*  snacks = List.generate(
+    snackList = List.generate(
       SnackType.values.length,
-      (index) => CreateSnackParams(
-        id: 'id $index',
-        name: 'Snack $index',
-        price: 'Tl $index',
-        quantity:RxInt(0),
-      ),  
-    );  */
+      (index) {
+        final SnackType snackType = SnackType.values[index];
+        return CreateSnackParams(
+          id: snackType.toId.toString(),
+          name: snackType.toText,
+          price: snackType.toPrice.toString(),
+          quantity: 0.obs,
+        );
+      },
+    );
   }
 
   // count
   //RxInt count = 0.obs;
-  void countAdd(CreateSnackParams product) {
-    //counts[index]++;
-    //////////snack[].quantity.value++;
-    // count.value++;
-    //create[index].quantity++;
-    /////////snack.add(product);
-    if (snack.contains(product)) {
-      // var mı yok mu ona bakcaksın
-      snack.add(product);
+  void countAdd(CreateSnackParams createSnackParams) {
+    final index = snackList.indexWhere((element) => element.id == createSnackParams.id);
+    snackList[index].quantity++;
+
+
+
+    final indexTwo = selectedSnackList.indexWhere((element) => element.id == createSnackParams.id);
+    bool isExists = selectedSnackList.any((element) => element.id == createSnackParams.id);
+
+    if (isExists) {
+      selectedSnackList[indexTwo].quantity.value++;
     } else {
-      snack[0].quantity.value++;
+      selectedSnackList.add(createSnackParams);
     }
   }
 
-  void countRemove(CreateSnackParams product) {
-    //counts[index]--;
-    ///////////snacks[index].quantity.value--;
-    //count.value--;
-    //SnackType.values[count.value--];
-    //create[index].quantity--;
-    ////////////snack.remove(product);
-    if (snack.contains(product)) {
-      snack.remove(product);
-    } else {
-      snack[0].quantity.value--;
+  void countRemove(final String snackId) {
+    final index = snackList.indexWhere((element) => element.id == snackId);
+
+    final int count = snackList[index].quantity.value;
+    if (count > 0) {
+      snackList[index].quantity.value--;
+    }
+
+    bool isExists = selectedSnackList.any((element) => element.id == snackId);
+    if (isExists) {
+      final int isExistsIndex = selectedSnackList.indexWhere((element) => element.id == snackId);
+
+      if (selectedSnackList[isExistsIndex].quantity.value > 1) {
+        selectedSnackList[isExistsIndex].quantity.value--;
+      } else if (selectedSnackList[isExistsIndex].quantity.value == 1) {
+        selectedSnackList.removeAt(isExistsIndex);
+      }
     }
   }
 }
