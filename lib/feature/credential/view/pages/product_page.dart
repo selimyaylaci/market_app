@@ -38,7 +38,6 @@ class _ProductPageState extends State<ProductPage> {
                   itemBuilder: (context, index) {
                     //final SnackType snackType = SnackType.values[index];
                     final CreateSnackParams createSnackParams = countController.selectedSnackList[index];
-
                     final SnackType snackType = SnackType.values.firstWhere(
                       (element) => element.toId.toString() == createSnackParams.id,
                     );
@@ -64,14 +63,15 @@ class _ProductPageState extends State<ProductPage> {
                                 children: [
                                   FloatingActionButton.small(
                                     onPressed: () {
-                                      countController.countAdd(
+                                      countController.countAdd(snackType.toId.toString());
+                                  /*     countController.countAdd(
                                         CreateSnackParams(
                                           id: snackType.toId.toString(),
                                           name: snackType.toText,
                                           price: snackType.toPrice.toString(),
                                           quantity: 1.obs,
                                         ),
-                                      );
+                                      ); */
                                     },
                                     backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                     heroTag: null,

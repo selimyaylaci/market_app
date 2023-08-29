@@ -65,14 +65,15 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                    countController.countAdd(
+                                    countController.countAdd(snackType.toId.toString());
+                                  /*   countController.countAdd(
                                       CreateSnackParams(
                                         id: snackType.toId.toString(),
                                         name: snackType.toText,
                                         price: snackType.toPrice.toString(),
                                         quantity: 1.obs,
                                       ),
-                                    );
+                                    ); */
                                   },
                                   backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                   heroTag: null,

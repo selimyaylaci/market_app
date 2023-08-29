@@ -4,9 +4,15 @@ class CreateSnackParams {
   final String id;
   final String name;
   final String price;
-  RxInt quantity;
+  //RxInt quantity;
+  late int quantity;
 
-  CreateSnackParams({required this.id, required this.name, required this.price, required this.quantity});
+  CreateSnackParams({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.quantity,
+  });
 
   /* Map<String, dynamic> toMap() {
     return {
@@ -18,15 +24,3 @@ class CreateSnackParams {
     };
   } */
 }
-
-/* class Product{
-  final List<CreateSnackParams> createSnack = [];
-
-  void addSnack(CreateSnackParams snack){
-    createSnack.add(snack);
-  }
-} */
-
-//{
- //   this.quantity = RxInt(0);
- // }
