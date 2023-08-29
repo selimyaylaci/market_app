@@ -9,7 +9,7 @@ class CountController extends GetxController {
   //final List<CreateSnackParams> snack = [];
   //RxList<CreateSnackParams> snack = <CreateSnackParams>[].obs;
   RxList<CreateSnackParams> selectedSnackList = <CreateSnackParams>[].obs;
-
+  
   @override
   void onInit() {
     super.onInit();
@@ -32,8 +32,6 @@ class CountController extends GetxController {
   void countAdd(CreateSnackParams createSnackParams) {
     final index = snackList.indexWhere((element) => element.id == createSnackParams.id);
     snackList[index].quantity++;
-
-
 
     final indexTwo = selectedSnackList.indexWhere((element) => element.id == createSnackParams.id);
     bool isExists = selectedSnackList.any((element) => element.id == createSnackParams.id);

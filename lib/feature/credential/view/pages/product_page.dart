@@ -36,14 +36,18 @@ class _ProductPageState extends State<ProductPage> {
                 child: ListView.builder(
                   itemCount: countController.selectedSnackList.length,
                   itemBuilder: (context, index) {
-                    final SnackType snackType = SnackType.values[index];
+                    //final SnackType snackType = SnackType.values[index];
+                    final CreateSnackParams createSnackParams = countController.selectedSnackList[index];
+
+                    final SnackType snackType = SnackType.values.firstWhere(
+                      (element) => element.toId.toString() == createSnackParams.id,
+                    );
                     return ListTile(
                       title: Column(
                         children: [
                           Stack(
                             children: [
                               Container(
-                                //height: 110,
                                 margin: const EdgeInsets.symmetric(
                                   horizontal: 150,
                                   vertical: 50,
@@ -74,8 +78,12 @@ class _ProductPageState extends State<ProductPage> {
                                     child: const Icon(Icons.add),
                                   ),
                                   Obx(
-                                    () => Text(
+                                    () => /* Text(
                                       countController.snackList[index].quantity.toString(),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ), */
+                                        Text(
+                                      countController.selectedSnackList[index].quantity.toString(),
                                       style: const TextStyle(fontWeight: FontWeight.bold),
                                     ),
                                   ),

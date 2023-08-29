@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Snacks"),
         backgroundColor: Colors.deepPurple,
         actions: [
           Padding(
@@ -79,14 +80,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Obx(
                                   () => Text(
-                                   
                                     countController.snackList[index].quantity.toString(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 FloatingActionButton.small(
                                   onPressed: () {
-                                     countController.countRemove(
+                                    countController.countRemove(
                                       snackType.toId.toString(),
                                     );
                                   },
