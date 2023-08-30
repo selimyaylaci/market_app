@@ -1,6 +1,5 @@
 import 'package:market_app/feature/credential/view/pages/product_page.dart';
 import 'package:market_app/feature/note/_note_exports.dart';
-import 'package:market_app/feature/note/domain/entities/arguments/create_snack_params.dart';
 import '../../../../core/_core_exports.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,10 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //TextEditingController addController = TextEditingController();
-  // TextEditingController removeController = TextEditingController();
-  final countController = Get.put(CountController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,79 +33,73 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                itemCount: SnackType.values.length,
-                itemBuilder: (context, index) {
-                  final SnackType snackType = SnackType.values[index];
-                  return ListTile(
-                    title: Column(
-                      children: [
-                        Stack(
+              child: GetBuilder(
+                init: CountController(),
+                id: "snackList",
+                builder: (controller) {
+                  return ListView.builder(
+                    itemCount: SnackType.values.length,
+                    itemBuilder: (context, index) {
+                      final SnackType snackType = SnackType.values[index];
+                      return ListTile(
+                        title: Column(
                           children: [
-                            Container(
-                              //height: 110,
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 150,
-                                vertical: 50,
-                              ), // horizontal: yatay, vertical : dikey
-                              //padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Image.asset(snackType.toImage),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                            Stack(
                               children: [
-                                FloatingActionButton.small(
-                                  onPressed: () {
-                                    countController.countAdd(snackType.toId.toString());
-                                  /*   countController.countAdd(
-                                      CreateSnackParams(
-                                        id: snackType.toId.toString(),
-                                        name: snackType.toText,
-                                        price: snackType.toPrice.toString(),
-                                        quantity: 1.obs,
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 150,
+                                    vertical: 50,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Image.asset(snackType.toImage),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    FloatingActionButton.small(
+                                      onPressed: () {
+                                        controller.countAdd(snackType.toId.toString());
+                                      },
+                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
+                                      heroTag: null,
+                                      child: const Icon(Icons.add),
+                                    ),
+                                    Text(
+                                      controller.snackList[index].quantity.toString(),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    FloatingActionButton.small(
+                                      onPressed: () {
+                                        controller.countRemove(
+                                          snackType.toId.toString(),
+                                        );
+                                      },
+                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
+                                      heroTag: null,
+                                      child: const Icon(
+                                        Icons.remove,
                                       ),
-                                    ); */
-                                  },
-                                  backgroundColor: const Color.fromARGB(255, 190, 156, 250),
-                                  heroTag: null,
-                                  child: const Icon(Icons.add),
-                                ),
-                                Obx(
-                                  () => Text(
-                                    countController.snackList[index].quantity.toString(),
-                                    style: const TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                FloatingActionButton.small(
-                                  onPressed: () {
-                                    countController.countRemove(
-                                      snackType.toId.toString(),
-                                    );
-                                  },
-                                  backgroundColor: const Color.fromARGB(255, 190, 156, 250),
-                                  heroTag: null,
-                                  child: const Icon(
-                                    Icons.remove,
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
+                            Text(
+                              snackType.toPrice.toString(),
+                              style: const TextStyle(
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(snackType.toText),
                           ],
                         ),
-                        Text(
-                          snackType.toPrice.toString(),
-                          style: const TextStyle(
-                            color: Colors.deepPurple,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(snackType.toText),
-                      ],
-                    ),
+                      );
+                    },
                   );
                 },
               ),
@@ -121,4 +110,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-// 2 farklı listen olsun secilenler ve ürün listen

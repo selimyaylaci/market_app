@@ -3,18 +3,14 @@ import '../../../core/_core_exports.dart';
 import '../domain/entities/snack_type.dart';
 
 class CountController extends GetxController {
-  // list
-  List<CreateSnackParams> snackList = <CreateSnackParams>[].obs;
-  //////////////////List<CreateSnackParams> snackList = [];
-  //List<CreateSnackParams> snacks = [];
-  //final List<CreateSnackParams> snack = [];
-  //RxList<CreateSnackParams> snack = <CreateSnackParams>[].obs;
+  /// Lists
+  RxList<CreateSnackParams> snackList = <CreateSnackParams>[].obs;
   RxList<CreateSnackParams> selectedSnackList = <CreateSnackParams>[].obs;
 
-/*   @override
+  @override
   void onInit() {
     super.onInit();
-    snackList = List.generate(
+    final List<CreateSnackParams> generatedList = List.generate(
       SnackType.values.length,
       (index) {
         final SnackType snackType = SnackType.values[index];
@@ -22,43 +18,17 @@ class CountController extends GetxController {
           id: snackType.toId.toString(),
           name: snackType.toText,
           price: snackType.toPrice.toString(),
-          quantity: 0.obs,
+          quantity: 0,
         );
       },
     );
-  } */
-  @override
-  void onInit() {
-    super.onInit();
-    snackList = List.generate(SnackType.values.length, (index) {
-      final SnackType snackType = SnackType.values[index];
-      return CreateSnackParams(
-          id: snackType.toId.toString(),
-          name: snackType.toText,
-          price: snackType.toPrice.toString(),
-          quantity: 0,
-          );
-    });
+    snackList.addAll(generatedList);
   }
 
-  // count
-  /* void countAdd(CreateSnackParams createSnackParams) {
-    final index = snackList.indexWhere((element) => element.id == createSnackParams.id);
-    snackList[index].quantity++;
-
-    final indexTwo = selectedSnackList.indexWhere((element) => element.id == createSnackParams.id);
-    bool isExists = selectedSnackList.any((element) => element.id == createSnackParams.id);
-
-    if (isExists) {
-      selectedSnackList[indexTwo].quantity.value++;
-    } else {
-      selectedSnackList.add(createSnackParams);
-    }
-  }
- */
   void countAdd(final String snackId) {
     final index = snackList.indexWhere((element) => element.id == snackId);
     snackList[index].quantity++;
+    debugPrint("=== Increased quantity: ${snackList[index].quantity}");
 
     final int indexTwo = selectedSnackList.indexWhere((element) => element.id == snackId);
     bool isExists = selectedSnackList.any((element) => element.id == snackId);
@@ -66,8 +36,16 @@ class CountController extends GetxController {
     if (isExists) {
       selectedSnackList[indexTwo].quantity++;
     } else {
-      selectedSnackList.add(snackList[index]);
+      selectedSnackList.add(
+        CreateSnackParams(
+          id: snackList[index].id,
+          name: snackList[index].name,
+          price: snackList[index].price,
+          quantity: 1,
+        ),
+      );
     }
+    update(["snackList", "selectedSnackList"]);
   }
 
   void countRemove(final String snackId) {
@@ -88,5 +66,6 @@ class CountController extends GetxController {
         selectedSnackList.removeAt(isExistsIndex);
       }
     }
+    update(["snackList", "selectedSnackList"]);
   }
 }

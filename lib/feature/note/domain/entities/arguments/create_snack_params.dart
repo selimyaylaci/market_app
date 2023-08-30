@@ -1,11 +1,9 @@
-import 'package:market_app/core/_package_exports.dart';
-
 class CreateSnackParams {
   final String id;
   final String name;
   final String price;
   //RxInt quantity;
-  late int quantity;
+  int quantity;
 
   CreateSnackParams({
     required this.id,
