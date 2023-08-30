@@ -42,6 +42,9 @@ class _ProductPageState extends State<ProductPage> {
                       final SnackType snackType = SnackType.values.firstWhere(
                         (element) => element.toId.toString() == createSnackParams.id,
                       );
+                      final int quantity = createSnackParams.quantity;
+                      final int totalPrice = snackType.toPrice * quantity;
+
                       return ListTile(
                         title: Column(
                           children: [
@@ -90,7 +93,8 @@ class _ProductPageState extends State<ProductPage> {
                               ],
                             ),
                             Text(
-                              snackType.toPrice.toString(),
+                              //snackType.toPrice.toString(),
+                              "Total : ${totalPrice.toString()} ₺",
                               style: const TextStyle(
                                 color: Colors.deepPurple,
                                 fontWeight: FontWeight.bold,
@@ -103,6 +107,19 @@ class _ProductPageState extends State<ProductPage> {
                     },
                   ),
                 ),
+                /*   SizedBox(
+                  height: kToolbarHeight,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                       "Total : ${totalPrice.toString()} ₺",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
+                ), */
               ],
             ),
           );

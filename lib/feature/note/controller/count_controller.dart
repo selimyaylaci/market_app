@@ -45,6 +45,7 @@ class CountController extends GetxController {
         ),
       );
     }
+
     update(["snackList", "selectedSnackList"]);
   }
 
