@@ -69,4 +69,14 @@ class CountController extends GetxController {
     }
     update(["snackList", "selectedSnackList"]);
   }
+
+  int totalSnackType() {
+    int allTotalPrice = 0;
+    for (CreateSnackParams snackParams in selectedSnackList) {
+      int quantity = snackParams.quantity;
+      int price = int.tryParse(snackParams.price) ?? 0;
+      allTotalPrice += (quantity * price);
+    }
+    return allTotalPrice;
+  }
 }

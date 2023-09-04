@@ -38,10 +38,12 @@ class _ProductPageState extends State<ProductPage> {
                   child: ListView.builder(
                     itemCount: controller.selectedSnackList.length,
                     itemBuilder: (context, index) {
+                      //for (var index = 0; index < controller.selectedSnackList.length; index++) { }
                       final CreateSnackParams createSnackParams = controller.selectedSnackList[index];
                       final SnackType snackType = SnackType.values.firstWhere(
                         (element) => element.toId.toString() == createSnackParams.id,
                       );
+
                       final int quantity = createSnackParams.quantity;
                       final int totalPrice = snackType.toPrice * quantity;
 
@@ -66,7 +68,9 @@ class _ProductPageState extends State<ProductPage> {
                                   children: [
                                     FloatingActionButton.small(
                                       onPressed: () {
-                                        controller.countAdd(snackType.toId.toString());
+                                        controller.countAdd(
+                                          snackType.toId.toString(),
+                                        );
                                       },
                                       backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                       heroTag: null,
@@ -107,19 +111,19 @@ class _ProductPageState extends State<ProductPage> {
                     },
                   ),
                 ),
-                /*   SizedBox(
+                SizedBox(
                   height: kToolbarHeight,
                   width: double.infinity,
                   child: Center(
                     child: Text(
-                       "Total : ${totalPrice.toString()} ₺",
+                      controller.totalSnackType().toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple,
                       ),
                     ),
                   ),
-                ), */
+                ),
               ],
             ),
           );
