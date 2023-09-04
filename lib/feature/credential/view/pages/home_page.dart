@@ -47,30 +47,62 @@ class _HomePageState extends State<HomePage> {
                             Stack(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 150,
-                                    vertical: 50,
+                                  /* margin: const EdgeInsets.symmetric(
+                                    horizontal: 35,
+                                    //vertical: 5,
+                                  ), */
+                                  margin: const EdgeInsets.only(
+                                    right: 2,
+                                    left: 30,
                                   ),
+                                  height: 200,
+                                  width: 200,
                                   decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: const Color.fromARGB(255, 190, 156, 250),
+                                    ),
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        snackType.toImage,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                  child: Image.asset(snackType.toImage),
                                 ),
-                                Row(
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     FloatingActionButton.small(
                                       onPressed: () {
                                         controller.countAdd(snackType.toId.toString());
                                       },
-                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
+                                      backgroundColor: Colors.white,
                                       heroTag: null,
-                                      child: const Icon(Icons.add),
+                                      shape: const RoundedRectangleBorder(),
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.deepPurple,
+                                      ),
                                     ),
-                                    Text(
-                                      controller.snackList[index].quantity.toString(),
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.deepPurple),
+                                        borderRadius: BorderRadius.circular(1),
+                                        shape: BoxShape.rectangle,
+                                        color: Colors.deepPurple,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        controller.snackList[index].quantity.toString(),
+                                        style: const TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
                                     ),
                                     FloatingActionButton.small(
                                       onPressed: () {
@@ -78,10 +110,12 @@ class _HomePageState extends State<HomePage> {
                                           snackType.toId.toString(),
                                         );
                                       },
-                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
+                                      backgroundColor: Colors.white,
                                       heroTag: null,
+                                      shape: const RoundedRectangleBorder(),
                                       child: const Icon(
                                         Icons.remove,
+                                        color: Colors.deepPurple,
                                       ),
                                     ),
                                   ],
@@ -89,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             Text(
-                              snackType.toPrice.toString(),
+                              "₺ ${snackType.toPrice.toString()}",
                               style: const TextStyle(
                                 color: Colors.deepPurple,
                                 fontWeight: FontWeight.bold,

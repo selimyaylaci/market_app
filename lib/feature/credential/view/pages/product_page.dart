@@ -74,7 +74,9 @@ class _ProductPageState extends State<ProductPage> {
                                       },
                                       backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                       heroTag: null,
-                                      child: const Icon(Icons.add),
+                                      child: const Icon(
+                                        Icons.add,color: Colors.deepPurple,
+                                      ),
                                     ),
                                     Text(
                                       controller.selectedSnackList[index].quantity.toString(),
@@ -89,7 +91,7 @@ class _ProductPageState extends State<ProductPage> {
                                       backgroundColor: const Color.fromARGB(255, 190, 156, 250),
                                       heroTag: null,
                                       child: const Icon(
-                                        Icons.remove,
+                                        Icons.remove,color: Colors.deepPurple,
                                       ),
                                     ),
                                   ],
@@ -98,7 +100,7 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                             Text(
                               //snackType.toPrice.toString(),
-                              "Total : ${totalPrice.toString()} ₺",
+                              "₺ ${totalPrice.toString()}",
                               style: const TextStyle(
                                 color: Colors.deepPurple,
                                 fontWeight: FontWeight.bold,
@@ -116,7 +118,7 @@ class _ProductPageState extends State<ProductPage> {
                   width: double.infinity,
                   child: Center(
                     child: Text(
-                      controller.totalSnackType().toString(),
+                     "  Devam       ₺ ${controller.totalSnackType().toString()}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple,

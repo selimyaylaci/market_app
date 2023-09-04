@@ -40,25 +40,25 @@ extension SnackTypeExtension on SnackType {
   String get toText {
     switch (this) {
       case SnackType.chips:
-        return "chips";
+        return "Chips";
       case SnackType.nuts:
-        return "nuts";
+        return "Nuts";
       case SnackType.cake:
-        return "cake";
+        return "Cake";
       case SnackType.biscuit:
-        return "biscuit";
+        return "Biscuit";
       case SnackType.chocolate:
-        return "chocolate";
+        return "Chocolate";
       case SnackType.iceCream:
-        return "iceCream";
+        return "IceCream";
       case SnackType.sweet:
-        return "sweet";
+        return "Sweet";
       case SnackType.coffee:
-        return "coffee";
+        return "Coffee";
       case SnackType.tea:
-        return "tea";
+        return "Tea";
       case SnackType.water:
-        return "water";
+        return "Water";
     }
   }
 
