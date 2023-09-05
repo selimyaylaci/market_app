@@ -38,7 +38,6 @@ class _ProductPageState extends State<ProductPage> {
                   child: ListView.builder(
                     itemCount: controller.selectedSnackList.length,
                     itemBuilder: (context, index) {
-                      //for (var index = 0; index < controller.selectedSnackList.length; index++) { }
                       final CreateSnackParams createSnackParams = controller.selectedSnackList[index];
                       final SnackType snackType = SnackType.values.firstWhere(
                         (element) => element.toId.toString() == createSnackParams.id,
@@ -48,82 +47,143 @@ class _ProductPageState extends State<ProductPage> {
                       final int totalPrice = snackType.toPrice * quantity;
 
                       return ListTile(
-                        title: Column(
+                        title: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 150,
-                                    vertical: 50,
+                            Expanded(
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: const Color.fromARGB(255, 197, 197, 197),
                                   ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      snackType.toImage,
+                                    ),
+                                    fit: BoxFit.cover,
                                   ),
-                                  child: Image.asset(snackType.toImage),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    FloatingActionButton.small(
-                                      onPressed: () {
-                                        controller.countAdd(
-                                          snackType.toId.toString(),
-                                        );
-                                      },
-                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
-                                      heroTag: null,
-                                      child: const Icon(
-                                        Icons.add,color: Colors.deepPurple,
-                                      ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    snackType.toText,
+                                    style: const TextStyle(
+                                      fontSize: 20,
                                     ),
-                                    Text(
-                                      controller.selectedSnackList[index].quantity.toString(),
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    //snackType.toPrice.toString(),
+                                    "₺ ${totalPrice.toString()}",
+                                    style: const TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
                                     ),
-                                    FloatingActionButton.small(
-                                      onPressed: () {
-                                        controller.countRemove(
-                                          snackType.toId.toString(),
-                                        );
-                                      },
-                                      backgroundColor: const Color.fromARGB(255, 190, 156, 250),
-                                      heroTag: null,
-                                      child: const Icon(
-                                        Icons.remove,color: Colors.deepPurple,
-                                      ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                FloatingActionButton.small(
+                                  onPressed: () {
+                                    controller.countRemove(
+                                      snackType.toId.toString(),
+                                    );
+                                  },
+                                  backgroundColor: Colors.white,
+                                  heroTag: null,
+                                  shape: const RoundedRectangleBorder(),
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.deepPurple),
+                                    borderRadius: BorderRadius.circular(1),
+                                    shape: BoxShape.rectangle,
+                                    color: Colors.deepPurple,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    controller.selectedSnackList[index].quantity.toString(),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 20,
                                     ),
-                                  ],
+                                  ),
+                                ),
+                                FloatingActionButton.small(
+                                  onPressed: () {
+                                    controller.countAdd(
+                                      snackType.toId.toString(),
+                                    );
+                                  },
+                                  backgroundColor: Colors.white,
+                                  heroTag: null,
+                                  shape: const RoundedRectangleBorder(),
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.deepPurple,
+                                  ),
                                 ),
                               ],
                             ),
-                            Text(
-                              //snackType.toPrice.toString(),
-                              "₺ ${totalPrice.toString()}",
-                              style: const TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(snackType.toText),
                           ],
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(
-                  height: kToolbarHeight,
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                     "  Devam       ₺ ${controller.totalSnackType().toString()}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: kToolbarHeight,
+                        width: 250,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20.0),
+                              topLeft: Radius.circular(20.0),
+                            )),
+                        child: const Text(
+                          "Next",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "₺ ${controller.totalSnackType().toString()}",
+                        style: const TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

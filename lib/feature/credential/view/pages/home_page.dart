@@ -47,10 +47,6 @@ class _HomePageState extends State<HomePage> {
                             Stack(
                               children: [
                                 Container(
-                                  /* margin: const EdgeInsets.symmetric(
-                                    horizontal: 35,
-                                    //vertical: 5,
-                                  ), */
                                   margin: const EdgeInsets.only(
                                     right: 2,
                                     left: 30,
@@ -70,12 +66,23 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
+                             /*    FloatingActionButton.small(
+                                  onPressed: () {},
+                                  backgroundColor: Colors.white,
+                                  shape: const RoundedRectangleBorder(),
+                                  heroTag: null,
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ), */
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     FloatingActionButton.small(
                                       onPressed: () {
-                                        controller.countAdd(snackType.toId.toString());
+                                        controller.countAdd(
+                                          snackType.toId.toString(),
+                                        );
                                       },
                                       backgroundColor: Colors.white,
                                       heroTag: null,
@@ -98,7 +105,6 @@ class _HomePageState extends State<HomePage> {
                                       child: Text(
                                         controller.snackList[index].quantity.toString(),
                                         style: const TextStyle(
-                                          //fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                           fontSize: 20,
                                         ),
@@ -119,17 +125,30 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ],
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "₺ ${snackType.toPrice.toString()}",
+                                  style: const TextStyle(
+                                    color: Colors.deepPurple,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                Text(
+                                  snackType.toText,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 30,
                                 ),
                               ],
                             ),
-                            Text(
-                              "₺ ${snackType.toPrice.toString()}",
-                              style: const TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(snackType.toText),
                           ],
                         ),
                       );
