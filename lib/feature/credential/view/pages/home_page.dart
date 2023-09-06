@@ -55,7 +55,10 @@ class _HomePageState extends State<HomePage> {
                                   width: 200,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB(255, 190, 156, 250),
+                                      //color: const Color.fromARGB(255, 190, 156, 250),
+                                      color: controller.selectedBasket(
+                                        snackType.toId.toString(),
+                                      ),
                                     ),
                                     borderRadius: BorderRadius.circular(20.0),
                                     image: DecorationImage(
@@ -66,17 +69,18 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                             /*    FloatingActionButton.small(
-                                  onPressed: () {},
-                                  backgroundColor: Colors.white,
-                                  shape: const RoundedRectangleBorder(),
-                                  heroTag: null,
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.deepPurple,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      controller.iconChange(snackType.toId.toString());
+                                    },
+                                    icon: controller.iconChange(
+                                      snackType.toId.toString(),
+                                    ),
                                   ),
-                                ), */
-                                Column(
+                                ),
+                                /*   Column(
                                   children: [
                                     FloatingActionButton.small(
                                       onPressed: () {
@@ -125,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ],
-                                )
+                                ), */
                               ],
                             ),
                             Column(
