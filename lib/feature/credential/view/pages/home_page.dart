@@ -73,7 +73,9 @@ class _HomePageState extends State<HomePage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: IconButton(
                                     onPressed: () {
-                                      controller.iconChange(snackType.toId.toString());
+                                      controller.iconChange(
+                                        snackType.toId.toString(),
+                                      );
                                     },
                                     icon: controller.iconChange(
                                       snackType.toId.toString(),

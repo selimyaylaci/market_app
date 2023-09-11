@@ -6,7 +6,7 @@ class CountController extends GetxController {
   /// Lists
   RxList<CreateSnackParams> snackList = <CreateSnackParams>[].obs;
   RxList<CreateSnackParams> selectedSnackList = <CreateSnackParams>[].obs;
-  RxList<SnackType> snackTypeGet = <SnackType>[].obs;
+  RxList<SnackType> snackTypeGet = SnackType.values.obs;
 
   @override
   void onInit() {
@@ -99,14 +99,16 @@ class CountController extends GetxController {
     final index = snackList.indexWhere((element) => element.id == snackId);
     final snackType = snackTypeGet.indexWhere((element) => element.toId.toString() == snackId);
 
+    Stack(
+      children: [
+        
+      ],
+    );
+
     if (isExists) {
-      //const Icon(Icons.add);
-      return FloatingActionButton.small(
-        onPressed: () {
-          /* countAdd(
-            snackType.toId.toString(),
-          ); */
-        },
+      return const Icon(Icons.add);
+      /*   return FloatingActionButton.small(
+        onPressed: () {},
         backgroundColor: Colors.white,
         heroTag: null,
         shape: const RoundedRectangleBorder(),
@@ -114,7 +116,7 @@ class CountController extends GetxController {
           Icons.add,
           color: Colors.deepPurple,
         ),
-      );
+      ); */
     } else {
       return SingleChildScrollView(
         child: Column(
@@ -174,10 +176,3 @@ class CountController extends GetxController {
 /**
  * void'i bir şey return etmiyorsak kullanırız eğer return ediyorsak o fonksiyonun yaoısına bakarız
  */
-
-
-
-
-
-
-
