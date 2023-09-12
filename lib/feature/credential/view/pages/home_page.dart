@@ -37,128 +37,71 @@ class _HomePageState extends State<HomePage> {
                 init: CountController(),
                 id: "snackList",
                 builder: (controller) {
-                  return ListView.builder(
-                    itemCount: SnackType.values.length,
-                    itemBuilder: (context, index) {
-                      final SnackType snackType = SnackType.values[index];
-                      return ListTile(
-                        title: Column(
-                          children: [
-                            Stack(
+                  return GridView.count(
+                    scrollDirection: Axis.vertical,
+                    crossAxisCount: 3,
+                    children: List.generate(
+                      SnackType.values.length,
+                      (index) {
+                        final SnackType snackType = SnackType.values[index];
+                        return ListTile(
+                          title: SingleChildScrollView(
+                            child: Column(
                               children: [
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                    right: 2,
-                                    left: 30,
-                                  ),
-                                  height: 200,
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      //color: const Color.fromARGB(255, 190, 156, 250),
-                                      color: controller.selectedBasket(
-                                        snackType.toId.toString(),
-                                      ),
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        snackType.toImage,
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      controller.iconChange(
-                                        snackType.toId.toString(),
-                                      );
-                                    },
-                                    icon: controller.iconChange(
-                                      snackType.toId.toString(),
-                                    ),
-                                  ),
-                                ),
-                                /*   Column(
+                                Stack(
                                   children: [
-                                    FloatingActionButton.small(
-                                      onPressed: () {
-                                        controller.countAdd(
-                                          snackType.toId.toString(),
-                                        );
-                                      },
-                                      backgroundColor: Colors.white,
-                                      heroTag: null,
-                                      shape: const RoundedRectangleBorder(),
-                                      child: const Icon(
-                                        Icons.add,
-                                        color: Colors.deepPurple,
-                                      ),
-                                    ),
                                     Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.deepPurple),
-                                        borderRadius: BorderRadius.circular(1),
-                                        shape: BoxShape.rectangle,
-                                        color: Colors.deepPurple,
+                                      margin: const EdgeInsets.only(
+                                        right: 2,
+                                        left: 30,
                                       ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        controller.snackList[index].quantity.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
+                                      height: 100,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: controller.selectedBasket(
+                                            snackType.toId.toString(),
+                                          ),
+                                        ),
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            snackType.toImage,
+                                          ),
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                    FloatingActionButton.small(
-                                      onPressed: () {
-                                        controller.countRemove(
-                                          snackType.toId.toString(),
-                                        );
-                                      },
-                                      backgroundColor: Colors.white,
-                                      heroTag: null,
-                                      shape: const RoundedRectangleBorder(),
-                                      child: const Icon(
-                                        Icons.remove,
+                                    controller.iconChange(snackType.toId.toString()),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "₺ ${snackType.toPrice.toString()}",
+                                      style: const TextStyle(
                                         color: Colors.deepPurple,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
                                       ),
                                     ),
+                                    Text(
+                                      snackType.toText,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    /* const SizedBox(
+                                      height: 30,
+                                    ), */
                                   ],
-                                ), */
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  "₺ ${snackType.toPrice.toString()}",
-                                  style: const TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                Text(
-                                  snackType.toText,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 30,
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),

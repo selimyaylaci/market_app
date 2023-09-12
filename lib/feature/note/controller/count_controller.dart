@@ -84,13 +84,13 @@ class CountController extends GetxController {
     return allTotalPrice;
   }
 
-  MaterialColor selectedBasket(final String snackId) {
+  Color selectedBasket(final String snackId) {
     bool isExists = selectedSnackList.any((element) => element.id == snackId);
 
     if (isExists) {
       return Colors.deepPurple;
     } else {
-      return Colors.grey;
+      return Colors.white;
     }
   }
 
@@ -99,80 +99,65 @@ class CountController extends GetxController {
     final index = snackList.indexWhere((element) => element.id == snackId);
     final snackType = snackTypeGet.indexWhere((element) => element.toId.toString() == snackId);
 
-    Stack(
+    return Column(
       children: [
-        
+        FloatingActionButton.small(
+          onPressed: () {
+            countAdd(
+              snackTypeGet[snackType].toId.toString(),
+            );
+          },
+          backgroundColor: Colors.white,
+          heroTag: null,
+          shape: const RoundedRectangleBorder(),
+          child: const Icon(
+            Icons.add,
+            color: Colors.deepPurple,
+          ),
+        ),
+        if (isExists) ...[
+          Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.deepPurple),
+              borderRadius: BorderRadius.circular(1),
+              shape: BoxShape.rectangle,
+              color: Colors.deepPurple,
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              snackList[index].quantity.toString(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          FloatingActionButton.small(
+            onPressed: () {
+              countRemove(
+                snackTypeGet[snackType].toId.toString(),
+              );
+            },
+            backgroundColor: Colors.white,
+            heroTag: null,
+            shape: const RoundedRectangleBorder(),
+            child: const Icon(
+              Icons.remove,
+              color: Colors.deepPurple,
+            ),
+          ),
+        ],
       ],
     );
-
-    if (isExists) {
-      return const Icon(Icons.add);
-      /*   return FloatingActionButton.small(
-        onPressed: () {},
-        backgroundColor: Colors.white,
-        heroTag: null,
-        shape: const RoundedRectangleBorder(),
-        child: const Icon(
-          Icons.add,
-          color: Colors.deepPurple,
-        ),
-      ); */
-    } else {
-      return SingleChildScrollView(
-        child: Column(
-          children: [
-            FloatingActionButton.small(
-              onPressed: () {
-                countAdd(
-                  snackTypeGet[snackType].toId.toString(),
-                );
-              },
-              backgroundColor: Colors.white,
-              heroTag: null,
-              shape: const RoundedRectangleBorder(),
-              child: const Icon(
-                Icons.add,
-                color: Colors.deepPurple,
-              ),
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.deepPurple),
-                borderRadius: BorderRadius.circular(1),
-                shape: BoxShape.rectangle,
-                color: Colors.deepPurple,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                snackList[index].quantity.toString(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            FloatingActionButton.small(
-              onPressed: () {
-                countRemove(
-                  snackTypeGet[snackType].toId.toString(),
-                );
-              },
-              backgroundColor: Colors.white,
-              heroTag: null,
-              shape: const RoundedRectangleBorder(),
-              child: const Icon(
-                Icons.remove,
-                color: Colors.deepPurple,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
   }
 }
 /**
  * void'i bir şey return etmiyorsak kullanırız eğer return ediyorsak o fonksiyonun yaoısına bakarız
  */
+
+
+
+
+
