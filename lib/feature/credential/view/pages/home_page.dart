@@ -28,54 +28,53 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: GetBuilder(
-                init: CountController(),
-                id: "snackList",
-                builder: (controller) {
-                  return GridView.count(
-                    scrollDirection: Axis.vertical,
-                    crossAxisCount: 3,
-                    children: List.generate(
-                      SnackType.values.length,
-                      (index) {
-                        final SnackType snackType = SnackType.values[index];
-                        return ListTile(
-                          title: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                        right: 2,
-                                        left: 30,
+      body: Column(
+        children: [
+          Expanded(
+            child: GetBuilder(
+              init: CountController(),
+              id: "snackList",
+              builder: (controller) {
+                return GridView.count(
+                  scrollDirection: Axis.vertical,
+                  crossAxisCount: 3,
+                  childAspectRatio: (1 / 1.4),
+                  children: List.generate(
+                    SnackType.values.length,
+                    (index) {
+                      final SnackType snackType = SnackType.values[index];
+                      return ListTile(
+                        title: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    height: 136,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: controller.selectedBasket(
+                                          snackType.toId.toString(),
+                                        ),
                                       ),
-                                      height: 100,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: controller.selectedBasket(
-                                            snackType.toId.toString(),
-                                          ),
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          snackType.toImage,
                                         ),
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            snackType.toImage,
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                    controller.iconChange(snackType.toId.toString()),
-                                  ],
-                                ),
-                                Column(
+                                  ),
+                                  controller.iconChange(
+                                    snackType.toId.toString(),
+                                  ),
+                                ],
+                              ),
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Column(
                                   children: [
                                     Text(
                                       "₺ ${snackType.toPrice.toString()}",
@@ -91,23 +90,20 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 20,
                                       ),
                                     ),
-                                    /* const SizedBox(
-                                      height: 30,
-                                    ), */
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
