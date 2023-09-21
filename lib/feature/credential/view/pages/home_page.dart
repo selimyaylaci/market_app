@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea, SnackType.water];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +44,10 @@ class _HomePageState extends State<HomePage> {
                     SnackType.values.length,
                     (index) {
                       final SnackType snackType = SnackType.values[index];
+                      bool discounted = discountedSnacks.contains(snackType);
+                      int originalPrice = snackType.toPrice;
+
+                      int discountedPrice = discounted ? (originalPrice * 0.2).toInt() : originalPrice;
                       return ListTile(
                         title: SingleChildScrollView(
                           child: Column(
@@ -76,13 +81,28 @@ class _HomePageState extends State<HomePage> {
                                 alignment: Alignment.bottomLeft,
                                 child: Column(
                                   children: [
-                                    Text(
-                                      "₺ ${snackType.toPrice.toString()}",
-                                      style: const TextStyle(
-                                        color: Colors.deepPurple,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          //"₺ ${snackType.toPrice.toString()}",
+                                          "₺ ${originalPrice.toString()}",
+                                          style: TextStyle(
+                                            color: discounted ? Colors.grey : Colors.deepPurple,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            decoration: discounted ? TextDecoration.lineThrough : null,
+                                          ),
+                                        ),
+                                        if (discounted)
+                                          Text(
+                                            "₺ ${discountedPrice.toString()}",
+                                            style: const TextStyle(
+                                              color: Colors.deepPurple,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                     Text(
                                       snackType.toText,
@@ -108,3 +128,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+
+
+

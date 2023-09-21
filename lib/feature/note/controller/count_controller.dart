@@ -7,6 +7,7 @@ class CountController extends GetxController {
   RxList<CreateSnackParams> snackList = <CreateSnackParams>[].obs;
   RxList<CreateSnackParams> selectedSnackList = <CreateSnackParams>[].obs;
   RxList<SnackType> snackTypeGet = SnackType.values.obs;
+  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea, SnackType.water];
 
   @override
   void onInit() {
@@ -74,14 +75,39 @@ class CountController extends GetxController {
   }
 
   // all total
-  int totalSnackType() {
+  /*  int totalSnackType() {
     int allTotalPrice = 0;
     for (CreateSnackParams snackParams in selectedSnackList) {
       int quantity = snackParams.quantity;
       int price = int.tryParse(snackParams.price) ?? 0;
+
       allTotalPrice += (quantity * price);
     }
     return allTotalPrice;
+  }
+ */
+
+  // all total and discounted
+  int totalSnackType() {
+    int totalSnackType = 0;
+    for (CreateSnackParams snackParams in selectedSnackList) {
+      SnackType snackType = SnackType.values.firstWhere(
+        (element) => element.toId == int.tryParse(snackParams.id),
+      );
+
+      int quantity = snackParams.quantity;
+
+      if (discountedSnacks.contains(snackType)) {
+        int discountedPrice = (snackType.toPrice * 0.2).toInt();
+        int totalPrice = quantity * discountedPrice;
+        totalSnackType += totalPrice;
+      } else {
+        int price = int.tryParse(snackParams.price) ?? 0;
+        int totalPrice = quantity * price;
+        totalSnackType += totalPrice;
+      }
+    }
+    return totalSnackType;
   }
 
   // change color
@@ -158,6 +184,16 @@ class CountController extends GetxController {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
 /**
  * void'i bir şey return etmiyorsak kullanırız eğer return ediyorsak o fonksiyonun yaoısına bakarız
  */

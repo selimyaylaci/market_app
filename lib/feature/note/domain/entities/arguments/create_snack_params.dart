@@ -5,6 +5,7 @@ class CreateSnackParams {
   //RxInt quantity;
   int quantity;
 
+
   CreateSnackParams({
     required this.id,
     required this.name,

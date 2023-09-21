@@ -73,17 +73,17 @@ extension SnackTypeExtension on SnackType {
       case SnackType.biscuit:
         return 11;
       case SnackType.chocolate:
-        return 70;
+        return 5;
       case SnackType.iceCream:
         return 40;
       case SnackType.sweet:
-        return 250;
+        return 20;
       case SnackType.coffee:
         return 80;
       case SnackType.tea:
         return 10;
       case SnackType.water:
-        return 5;
+        return 13;
     }
   }
 
