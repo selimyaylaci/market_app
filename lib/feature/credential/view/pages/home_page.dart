@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea, SnackType.water];
+  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       bool discounted = discountedSnacks.contains(snackType);
                       int originalPrice = snackType.toPrice;
 
-                      int discountedPrice = discounted ? (originalPrice * 0.2).toInt() : originalPrice;
+                      int discountedPrice = discounted ? snackType.toDiscount.toInt() : originalPrice;
                       return ListTile(
                         title: SingleChildScrollView(
                           child: Column(
@@ -77,41 +77,41 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          //"₺ ${snackType.toPrice.toString()}",
-                                          "₺ ${originalPrice.toString()}",
-                                          style: TextStyle(
-                                            color: discounted ? Colors.grey : Colors.deepPurple,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                            decoration: discounted ? TextDecoration.lineThrough : null,
-                                          ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        //"₺ ${snackType.toPrice.toString()}",
+                                        "${originalPrice.toString()} TL",
+                                        style: TextStyle(
+                                          color: discounted ? Colors.grey : Colors.deepPurple,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          decoration: discounted ? TextDecoration.lineThrough : null,
                                         ),
-                                        if (discounted)
-                                          Text(
-                                            "₺ ${discountedPrice.toString()}",
+                                      ),
+                                      if (discounted)
+                                        Expanded(
+                                          child: Text(
+                                            "${discountedPrice.toString()} TL",
                                             style: const TextStyle(
                                               color: Colors.deepPurple,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20,
                                             ),
                                           ),
-                                      ],
+                                        ),
+                                    ],
+                                  ),
+                                  Text(
+                                    snackType.toText,
+                                    style: const TextStyle(
+                                      fontSize: 20,
                                     ),
-                                    Text(
-                                      snackType.toText,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -128,8 +128,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-
-

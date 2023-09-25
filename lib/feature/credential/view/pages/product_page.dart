@@ -11,7 +11,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea, SnackType.water];
+  List<SnackType> discountedSnacks = [SnackType.cake, SnackType.tea];
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _ProductPageState extends State<ProductPage> {
                       //final int totalPrice = int.tryParse(createSnackParams.price) ?? 0;
                       int originalPrice = snackType.toPrice;
                       bool discounted = discountedSnacks.contains(snackType);
-                      int discountedPrice = discounted ? (originalPrice * 0.2).toInt() : originalPrice;
+                      int discountedPrice = discounted ? snackType.toDiscount.toInt() : originalPrice;
                       int totalPrice = discounted ? discountedPrice * quantity : originalPrice * quantity;
 
                       return ListTile(

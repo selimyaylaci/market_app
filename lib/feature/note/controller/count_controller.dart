@@ -98,7 +98,7 @@ class CountController extends GetxController {
       int quantity = snackParams.quantity;
 
       if (discountedSnacks.contains(snackType)) {
-        int discountedPrice = (snackType.toPrice * 0.2).toInt();
+        int discountedPrice = snackType.toDiscount.toInt();
         int totalPrice = quantity * discountedPrice;
         totalSnackType += totalPrice;
       } else {
@@ -184,16 +184,6 @@ class CountController extends GetxController {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
 /**
  * void'i bir şey return etmiyorsak kullanırız eğer return ediyorsak o fonksiyonun yaoısına bakarız
  */

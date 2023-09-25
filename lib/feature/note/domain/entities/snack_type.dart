@@ -69,7 +69,7 @@ extension SnackTypeExtension on SnackType {
       case SnackType.nuts:
         return 35;
       case SnackType.cake:
-        return 7;
+        return 100;
       case SnackType.biscuit:
         return 11;
       case SnackType.chocolate:
@@ -81,7 +81,7 @@ extension SnackTypeExtension on SnackType {
       case SnackType.coffee:
         return 80;
       case SnackType.tea:
-        return 10;
+        return 100;
       case SnackType.water:
         return 13;
     }
@@ -111,7 +111,29 @@ extension SnackTypeExtension on SnackType {
         return "assets/water.jpeg";
     }
   }
+
+  int get toDiscount {
+    switch (this) {
+      case SnackType.chips:
+        return 0;
+      case SnackType.nuts:
+        return 0;
+      case SnackType.cake:
+        return toPrice.toInt() * 10 ~/ 100;
+      case SnackType.biscuit:
+        return 0;
+      case SnackType.chocolate:
+        return 0;
+      case SnackType.iceCream:
+        return 0;
+      case SnackType.sweet:
+        return 0;
+      case SnackType.coffee:
+        return 0;
+      case SnackType.tea:
+        return toPrice.toInt() * 25 ~/ 100;
+      case SnackType.water:
+        return 0;
+    }
+  }
 }
-
-
-
