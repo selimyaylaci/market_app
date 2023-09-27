@@ -88,7 +88,7 @@ class _ProductPageState extends State<ProductPage> {
                                   ),
                                   Text(
                                     //snackType.toPrice.toString(),
-                                    "₺ ${totalPrice.toString()}",
+                                    "${totalPrice.toString()} TL",
                                     style: const TextStyle(
                                       color: Colors.deepPurple,
                                       fontWeight: FontWeight.bold,
@@ -183,7 +183,7 @@ class _ProductPageState extends State<ProductPage> {
                         width: 20,
                       ),
                       Text(
-                        "₺ ${controller.totalSnackType().toString()}",
+                        "${controller.totalSnackType().toString()} TL",
                         style: const TextStyle(
                           color: Colors.deepPurple,
                           fontWeight: FontWeight.bold,

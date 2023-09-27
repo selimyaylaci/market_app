@@ -82,27 +82,32 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(
-                                        //"₺ ${snackType.toPrice.toString()}",
-                                        "${originalPrice.toString()} TL",
-                                        style: TextStyle(
-                                          color: discounted ? Colors.grey : Colors.deepPurple,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          decoration: discounted ? TextDecoration.lineThrough : null,
-                                        ),
-                                      ),
-                                      if (discounted)
-                                        Expanded(
-                                          child: Text(
-                                            "${discountedPrice.toString()} TL",
-                                            style: const TextStyle(
-                                              color: Colors.deepPurple,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            ),
+                                      Expanded(
+                                        child: RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: " ${originalPrice.toString()} TL",
+                                                style: TextStyle(
+                                                  color: discounted ? Colors.grey : Colors.deepPurple,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18,
+                                                  decoration: discounted ? TextDecoration.lineThrough : null,
+                                                ),
+                                              ),
+                                              if (discounted)
+                                                TextSpan(
+                                                  text: "\n ${discountedPrice.toString()} TL",
+                                                  style: const TextStyle(
+                                                    color: Colors.deepPurple,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                            ],
                                           ),
                                         ),
+                                      ),
                                     ],
                                   ),
                                   Text(
