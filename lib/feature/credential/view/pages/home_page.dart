@@ -1,3 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/_core_exports.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +11,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final RxInt activeIndex = 0.obs;
+  final CarouselController controller = CarouselController();
+  final getirImages = [
+    "assets/getirAnasayfa1.webp",
+    "assets/getirAnasayfa2.webp",
+    "assets/getirAnasayfa3.jpeg",
+    "assets/getirAnasayfa4.webp",
+    "assets/getirAnasayfa5.jpeg",
+  ];
+
+  final ValueNotifier<int> activeIndexNotifier = ValueNotifier<int>(0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,12 +74,91 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: Container(
-              
+          CarouselSlider.builder(
+            carouselController: controller,
+            itemCount: getirImages.length,
+            options: CarouselOptions(
+              height: 250,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 3),
+              viewportFraction: 1,
+              onPageChanged: (index, reason) => activeIndex.value = index,
+            ),
+            itemBuilder: (context, index, realIndex) {
+              final getirImage = getirImages[index];
+              return buildImage(getirImage, index);
+            },
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          buildIndicator(),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                const Text(
+                  "Merhaba Selim!",
+                  style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  width: 50,
+                ),
+                SizedBox(
+                  width: 200,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.deepPurple,
+                      ),
+                      hintText: "Getir'de ara",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
+          //StaggeredGrid.count(crossAxisCount: crossAxisCount)
         ],
+      ),
+    );
+  }
+
+  Widget buildImage(String getirImage, int index) {
+    return Container(
+      color: Colors.grey,
+      child: Image.asset(
+        getirImage,
+        fit: BoxFit.cover,
+        width: 430,
+      ),
+    );
+  }
+
+  Widget buildIndicator() {
+    return Obx(
+      () => AnimatedSmoothIndicator(
+        //axisDirection:,
+        activeIndex: activeIndex.value,
+        count: getirImages.length,
+        effect: const SlideEffect(
+          dotWidth: 10,
+          dotHeight: 10,
+          activeDotColor: Colors.deepPurple,
+          dotColor: Color.fromARGB(255, 211, 211, 211),
+        ),
       ),
     );
   }
