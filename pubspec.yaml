@@ -81,6 +81,14 @@ flutter:
    - assets/getirAnasayfa3.jpeg
    - assets/getirAnasayfa4.webp
    - assets/getirAnasayfa5.jpeg
+   - assets/getirbuyuk.jpeg
+   - assets/getircarsi.jpeg
+   - assets/getiris.jpeg
+   - assets/getirn11.jpeg
+   - assets/getirsepet.png
+   - assets/getirsepet4.jpeg
+   - assets/getirsu.jpeg
+   - assets/getiryemek.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

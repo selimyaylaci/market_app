@@ -20,8 +20,7 @@ class _HomePageState extends State<HomePage> {
     "assets/getirAnasayfa4.webp",
     "assets/getirAnasayfa5.jpeg",
   ];
-
-  final ValueNotifier<int> activeIndexNotifier = ValueNotifier<int>(0);
+  // final ValueNotifier<int> activeIndexNotifier = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +129,239 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          //StaggeredGrid.count(crossAxisCount: crossAxisCount)
+          Expanded(
+            child: StaggeredGrid.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              children: [
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 2,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getirsepet.jpeg",
+                            width: 150,
+                            height: 150,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getir",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getiryemek.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getiryemek",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getircarsi.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getirçarşı",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getirsu.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getirsu",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getirbuyuk.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getirbüyük",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getiris.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "getiriş",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                StaggeredGridTile.count(
+                  crossAxisCellCount: 2,
+                  mainAxisCellCount: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            "assets/getirn11.jpeg",
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "n11",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
