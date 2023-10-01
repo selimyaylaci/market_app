@@ -86,9 +86,17 @@ flutter:
    - assets/getiris.jpeg
    - assets/getirn11.jpeg
    - assets/getirsepet.png
+   - assets/getirsepet.jpeg
    - assets/getirsepet4.jpeg
    - assets/getirsu.jpeg
    - assets/getiryemek.jpeg
+   - assets/getirsepetremove.png
+   - assets/getiryemekremove.png
+   - assets/getircarsiremove.png
+   - assets/getirsuremove.png
+   - assets/getirbuyukremove.png
+   - assets/getirisremove.png
+   - assets/getirn11remove.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
