@@ -218,7 +218,9 @@ class _HomePageState extends State<HomePage> {
               );
               break;
             case SameCodeType.getirYemek:
-              // TODO: Handle this case.
+             Get.to(
+                const FoodPage(),
+              );
               break;
             case SameCodeType.getirCarsi:
               // TODO: Handle this case.
