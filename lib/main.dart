@@ -1,7 +1,16 @@
+import 'package:flutter/services.dart';
 import 'package:market_app/feature/credential/view/_view_exports.dart';
 import 'core/_core_exports.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.deepPurple,
+      statusBarIconBrightness: Brightness.dark
+    ),
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
