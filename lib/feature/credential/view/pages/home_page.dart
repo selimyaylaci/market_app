@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                   SameCodeType.values.length,
                   (index) {
                     final SameCodeType sameCodeType = SameCodeType.values[index];
-                    return buildSameCodeWidget(sameCodeType);
+                    return buildSameCode(sameCodeType);
                   },
                 ),
               ),
@@ -205,20 +205,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildSameCodeWidget(SameCodeType type) {
+  Widget buildSameCode(SameCodeType sameCodeType) {
     return StaggeredGridTile.count(
       crossAxisCellCount: 2,
-      mainAxisCellCount: type == SameCodeType.getirsepet ? 2 : 1,
+      mainAxisCellCount: sameCodeType == SameCodeType.getirsepet ? 2 : 1,
       child: InkWell(
         onTap: () {
-          switch (type) {
+          switch (sameCodeType) {
             case SameCodeType.getirsepet:
               Get.to(
                 const SnackPage(),
               );
               break;
             case SameCodeType.getirYemek:
-             Get.to(
+              Get.to(
                 const FoodPage(),
               );
               break;
@@ -252,9 +252,9 @@ class _HomePageState extends State<HomePage> {
                   bottomRight: Radius.circular(10),
                 ),
                 child: Image.asset(
-                  type.toImage,
-                  width: type == SameCodeType.getirsepet ? 150 : 85,
-                  height: type == SameCodeType.getirsepet ? 130 : 85,
+                  sameCodeType.toImage,
+                  width: sameCodeType == SameCodeType.getirsepet ? 150 : 85,
+                  height: sameCodeType == SameCodeType.getirsepet ? 130 : 85,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -263,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    type.toText,
+                    sameCodeType.toText,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.deepPurple,

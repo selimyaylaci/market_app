@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:market_app/feature/note/domain/entities/same_food_down.dart';
+import 'package:market_app/feature/note/domain/entities/same_food_up.dart';
 import '../../../../core/_core_exports.dart';
 
 class FoodPage extends StatefulWidget {
@@ -78,7 +80,7 @@ class _FoodPageState extends State<FoodPage> {
                 carouselController: controller,
                 itemCount: getirYemekImages.length,
                 options: CarouselOptions(
-                  height: 180,
+                  height: 200,
                   autoPlay: true,
                   autoPlayInterval: const Duration(seconds: 3),
                   //viewportFraction: 1,
@@ -92,114 +94,95 @@ class _FoodPageState extends State<FoodPage> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(16.0),
-              width: 400,
-              height: 200,
+              padding: const EdgeInsets.all(8.0),
+              width: 398,
+              height: 300,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Colors.white,
               ),
-              child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(FoodTypeUp.values.length, (index) {
+                  final FoodTypeUp foodTypeUp = FoodTypeUp.values[index];
+                  final FoodTypeDown foodTypeDown = FoodTypeDown.values[index];
+                  return buildFoodType(foodTypeUp, foodTypeDown);
+                }),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.question_mark),
-                            ),
-                            const Text("Ne Yesem?"),
-                          ],
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                      ),
+                      width: 200,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.deepPurple,
+                          ),
+                          hintText: "Canın ne çekiyor ?",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: const BorderSide(color: Colors.transparent),
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.diamond),
-                            ),
-                            const Text("Müdavim"),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.access_time_filled_rounded),
-                            ),
-                            const Text("Siparişlerim"),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.flatware),
-                            ),
-                            const Text("Masa"),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.abc),
-                          ),
-                          const Text("İndirimli Restoranlar "),
-                        ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        height: 55,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          children: const [
+                            Icon(
+                              Icons.filter_list_rounded,
+                              color: Colors.deepPurple,
+                            ),
+                            Text(
+                              "Filtre",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.abc),
-                          ),
-                         // const Text("Getir Getirsin Restoranları"),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.abc),
-                          ),
-                      //    const Text("Algida Lezzetleri"),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.abc),
-                          ),
-                         // const Text("Yıldız Restoranları"),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ],
+              ),
+            ),
+            Container(
+              height: 110,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.white,
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "GetirYemek Müdavim",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
@@ -216,6 +199,62 @@ class _FoodPageState extends State<FoodPage> {
         fit: BoxFit.cover,
         width: 380,
       ),
+    );
+  }
+
+  buildFoodType(FoodTypeUp foodTypeUp, FoodTypeDown foodTypeDown) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                width: 70,
+                height: 70,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: const Color.fromARGB(255, 213, 205, 239),
+                ),
+                child: foodTypeUp.toImage,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(foodTypeUp.toText),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                  width: 70,
+                  height: 70,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Image.asset(
+                    foodTypeDown.toImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(foodTypeDown.toText),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
