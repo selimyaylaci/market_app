@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:market_app/feature/note/_note_exports.dart';
+import 'package:market_app/feature/note/domain/entities/getir_yemek_mutfak.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../../core/_core_exports.dart';
 
@@ -363,28 +364,57 @@ class _FoodPageState extends State<FoodPage> {
                           },
                         ),
                       ),
-                      /*    Container(
-                        height: 160,
-                        width: 350,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 18,
+                            ),
+                            child: Text(
+                              "Limitsiz İndirimler",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 140,
+                            ),
+                            child: Text(
+                              "Tümünü Gör (5)",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 280,
+                        width: 400,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          /* padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 10,
-                            right: 10,
-                            bottom: 50,
-                          ), */
                           itemCount: Mudavim.values.length,
                           itemBuilder: (context, index) {
                             final Mudavim mudavim = Mudavim.values[index];
-                            return buildMudavim(mudavim);
+                            return buildLimit(mudavim);
                           },
                         ),
-                      ), */
+                      ),
                       Row(
                         children: [
                           const Padding(
@@ -393,7 +423,7 @@ class _FoodPageState extends State<FoodPage> {
                               left: 18,
                             ),
                             child: Text(
-                              "Müdavim Restoranları",
+                              "Zincir Restoranlar",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 13,
@@ -403,7 +433,7 @@ class _FoodPageState extends State<FoodPage> {
                           const Padding(
                             padding: EdgeInsets.only(
                               top: 25,
-                              left: 115,
+                              left: 140,
                             ),
                             child: Text(
                               "Tümünü Gör (5)",
@@ -424,6 +454,18 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 280,
+                        width: 400,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: Mudavim.values.length,
+                          itemBuilder: (context, index) {
+                            final Mudavim mudavim = Mudavim.values[index];
+                            return buildZincir(mudavim);
+                          },
+                        ),
+                      ),
                       Row(
                         children: [
                           const Padding(
@@ -432,7 +474,7 @@ class _FoodPageState extends State<FoodPage> {
                               left: 18,
                             ),
                             child: Text(
-                              "Müdavim Restoranları",
+                              "Mutfaklar",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 13,
@@ -442,7 +484,7 @@ class _FoodPageState extends State<FoodPage> {
                           const Padding(
                             padding: EdgeInsets.only(
                               top: 25,
-                              left: 115,
+                              left: 190,
                             ),
                             child: Text(
                               "Tümünü Gör (5)",
@@ -463,44 +505,17 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
-                            child: Text(
-                              "Müdavim Restoranları",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 115,
-                            ),
-                            child: Text(
-                              "Tümünü Gör (5)",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        height: 150,
+                        width: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: FoodKitchen.values.length,
+                          itemBuilder: (context, index) {
+                            final FoodKitchen foodKitchen = FoodKitchen.values[index];
+                            return buildFoodKitchen(foodKitchen);
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -738,5 +753,366 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
+  }
+
+  Widget buildLimit(Mudavim mudavim) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 70,
+              left: 10,
+              right: 10,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(
+                mudavim.toImage,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 20,
+            ),
+            child: Container(
+              width: 90,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.diamond,
+                    color: Colors.deepPurple,
+                  ),
+                  Text(
+                    "Müdavim",
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 120,
+              top: 20,
+            ),
+            child: Container(
+              width: 180,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.yellow,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.discount,
+                    color: Colors.deepPurple,
+                  ),
+                  Text(
+                    mudavim.toDiscount,
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 165,
+            ),
+            child: Container(
+              width: 75,
+              height: 32,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                  ),
+                  Text(
+                    mudavim.toLocation,
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  top: 220,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: Text(
+                        mudavim.toText,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.deepPurple,
+                          ),
+                          Text(
+                            mudavim.toStar,
+                            style: const TextStyle(
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                          Text(
+                            mudavim.toNumberOrders,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 245),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.r_mobiledata_rounded,
+                    ),
+                    Text(
+                      mudavim.toTimeAndMinPrice,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildZincir(Mudavim mudavim) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 70,
+              left: 10,
+              right: 10,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(
+                mudavim.toImage,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 20,
+            ),
+            child: Container(
+              width: mudavim == Mudavim.doner ? 180 : 150,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  /* const Icon(
+                   mudavim == Mudavim.doner ? Icons.abc : Icons.abc_outlined,
+                    color: Colors.deepPurple,
+                  ),  */
+                  mudavim == Mudavim.doner
+                      ? const Icon(
+                          Icons.card_giftcard,
+                          color: Colors.deepPurple,
+                        )
+                      : const Icon(
+                          Icons.diamond,
+                          color: Colors.deepPurple,
+                        ),
+                  Text(
+                    mudavim == Mudavim.doner ? "Yerel Zincir Restoranlar" : "Bu Ay Müdavim'de",
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 165,
+            ),
+            child: Container(
+              width: 75,
+              height: 32,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                  ),
+                  Text(
+                    mudavim.toLocation,
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  top: 220,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: Text(
+                        mudavim.toText,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.deepPurple,
+                          ),
+                          Text(
+                            mudavim.toStar,
+                            style: const TextStyle(
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                          Text(
+                            mudavim.toNumberOrders,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 245),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.r_mobiledata_rounded,
+                    ),
+                    Text(
+                      mudavim.toTimeAndMinPrice,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildFoodKitchen(FoodKitchen foodKitchen) {
+    return Container();
   }
 }

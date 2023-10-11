@@ -1,5 +1,3 @@
-import 'package:market_app/core/_core_exports.dart';
-
 enum Mudavim {
   hamburger,
   kofte,
@@ -122,6 +120,25 @@ extension MudavimExtension on Mudavim {
         return "55 dk·Min 200 TL";
       case Mudavim.cajun:
         return "45 dk·Min 400 TL";
+    }
+  }
+
+  String get toDiscount {
+    switch (this) {
+      case Mudavim.hamburger:
+        return "%25 indirim! - Sınırsız";
+      case Mudavim.kofte:
+        return "%10 indirim! - Sınırsız";
+      case Mudavim.patso:
+        return "%20 indirim! - Sınırsız";
+      case Mudavim.kumru:
+        return "%35 indirim! - Sınırsız";
+      case Mudavim.doner:
+        return "%40 indirim! - Sınırsız";
+      case Mudavim.tomsBurger:
+        return "%5 indirim! - Sınırsız";
+      case Mudavim.cajun:
+        return "%15 indirim! - Sınırsız";
     }
   }
 }

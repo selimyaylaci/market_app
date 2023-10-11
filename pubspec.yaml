@@ -107,6 +107,21 @@ flutter:
    - assets/getirYemekKumru.jpeg
    - assets/getirYemekPatso.png
    - assets/getirYemekTost.jpeg
+   - assets/getirYemekBurgerrRemove.png
+   - assets/getirYemekCigKofteRemove.png
+   - assets/getirYemekDonerrRemove.png
+   - assets/getirYemekDunyaMutfagiRemove.png
+   - assets/getirYemekEvYemekleriRemove.png
+   - assets/getirYemekIcecekRemove.png
+   - assets/getirYemekKahvaltiRemove.png
+   - assets/getirYemekKebapRemove.png
+   - assets/getirYemekPastaneRemove.png
+   - assets/getirYemekPastaRemove.png
+   - assets/getirYemekPideRemove.png
+   - assets/getirYemekPizzaRemove.png
+   - assets/getirYemekTantuniRemove.png
+   - assets/getirYemekTavukRemove.png
+   - assets/getirYemekTostSandvicRemove.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
