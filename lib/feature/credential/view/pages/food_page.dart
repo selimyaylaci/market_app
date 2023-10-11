@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:market_app/feature/note/domain/entities/same_food_down.dart';
-import 'package:market_app/feature/note/domain/entities/same_food_up.dart';
+import 'package:market_app/feature/note/_note_exports.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../../core/_core_exports.dart';
 
@@ -241,47 +240,68 @@ class _FoodPageState extends State<FoodPage> {
                                     ],
                                   ),
                                   const Text("Her 3 siparişin ardından 75TL indirim!"),
+                                  const SizedBox(
+                                    height: 3,
+                                  ),
                                   Row(
                                     children: [
                                       Expanded(
-                                        child: Stack(
-                                          children: [
-                                            StepProgressIndicator(
-                                              totalSteps: 3,
-                                              currentStep: 2,
-                                              size: 50,
-                                              selectedColor: Colors.deepPurple,
-                                              unselectedColor: Colors.grey,
-                                              customStep: (index, color, _) => color == Colors.deepPurple
-                                                  ? const Icon(
-                                                      Icons.diamond,
-                                                      color: Colors.deepPurple,
-                                                    )
-                                                  : const Icon(
-                                                      Icons.diamond,
-                                                      color: Colors.grey,
-                                                    ),
-                                            ),
-                                            Positioned(
-                                              left: 20,
-                                              bottom: 20,
-                                              child: Container(
-                                                width: 75,
-                                                height: 10,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.rectangle,
-                                                  borderRadius: BorderRadius.circular(25),
-                                                  color: const Color.fromARGB(255, 212, 198, 249),
+                                        child: StepProgressIndicator(
+                                          totalSteps: 3,
+                                          currentStep: 2,
+                                          //size: 50,
+                                          selectedColor: Colors.deepPurple,
+                                          unselectedColor: Colors.grey,
+                                          customStep: (index, color, _) => color == Colors.deepPurple
+                                              ? Container(
+                                                  margin: const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                        color: Color.fromARGB(255, 223, 213, 249),
+                                                        spreadRadius: 3,
+                                                        offset: Offset(0, 10),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.diamond,
+                                                    color: Colors.deepPurple,
+                                                  ),
+                                                )
+                                              : Container(
+                                                  margin: const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                        color: Color.fromARGB(255, 239, 234, 255),
+                                                        spreadRadius: 3,
+                                                        offset: Offset(0, 10),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.diamond,
+                                                    color: Colors.grey,
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ),
-                                      const Text(
-                                        "2/3",
-                                        style: TextStyle(
-                                          color: Colors.deepPurple,
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Text(
+                                          "2/3",
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -291,6 +311,196 @@ class _FoodPageState extends State<FoodPage> {
                             ],
                           ),
                         ),
+                      ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 18,
+                            ),
+                            child: Text(
+                              "Müdavim Restoranları",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 115,
+                            ),
+                            child: Text(
+                              "Tümünü Gör (5)",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 280,
+                        width: 400,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: Mudavim.values.length,
+                          itemBuilder: (context, index) {
+                            final Mudavim mudavim = Mudavim.values[index];
+                            return buildMudavim(mudavim);
+                          },
+                        ),
+                      ),
+                      /*    Container(
+                        height: 160,
+                        width: 350,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white,
+                        ),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          /* padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 10,
+                            right: 10,
+                            bottom: 50,
+                          ), */
+                          itemCount: Mudavim.values.length,
+                          itemBuilder: (context, index) {
+                            final Mudavim mudavim = Mudavim.values[index];
+                            return buildMudavim(mudavim);
+                          },
+                        ),
+                      ), */
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 18,
+                            ),
+                            child: Text(
+                              "Müdavim Restoranları",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 115,
+                            ),
+                            child: Text(
+                              "Tümünü Gör (5)",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 18,
+                            ),
+                            child: Text(
+                              "Müdavim Restoranları",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 115,
+                            ),
+                            child: Text(
+                              "Tümünü Gör (5)",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 18,
+                            ),
+                            child: Text(
+                              "Müdavim Restoranları",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 25,
+                              left: 115,
+                            ),
+                            child: Text(
+                              "Tümünü Gör (5)",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -367,6 +577,166 @@ class _FoodPageState extends State<FoodPage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget buildMudavim(Mudavim mudavim) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 70,
+              left: 10,
+              right: 10,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Image.asset(
+                mudavim.toImage,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 20,
+            ),
+            child: Container(
+              width: 90,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.diamond,
+                    color: Colors.deepPurple,
+                  ),
+                  Text(
+                    "Müdavim",
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 165,
+            ),
+            child: Container(
+              width: 75,
+              height: 32,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                  ),
+                  Text(
+                    mudavim.toLocation,
+                    style: const TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 25,
+                  top: 220,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: Text(
+                        mudavim.toText,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.deepPurple,
+                          ),
+                          Text(
+                            mudavim.toStar,
+                            style: const TextStyle(
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                          Text(
+                            mudavim.toNumberOrders,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 245),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.r_mobiledata_rounded,
+                    ),
+                    Text(
+                      mudavim.toTimeAndMinPrice,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

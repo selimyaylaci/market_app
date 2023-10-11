@@ -5,13 +5,9 @@ enum FoodTypeUp {
   mudavim,
   siparislerim,
   masa,
-  /*  indirimli,
-  getirGetirsin,
-  algida,
-  yildiz, */
 }
 
-extension FoodTypeExtension on FoodTypeUp {
+extension FoodTypeUpExtension on FoodTypeUp {
   String get toText {
     switch (this) {
       case FoodTypeUp.neYesem:
@@ -22,14 +18,6 @@ extension FoodTypeExtension on FoodTypeUp {
         return "Siparişlerim";
       case FoodTypeUp.masa:
         return "Masa";
-      /*  case FoodType.indirimli:
-        return "İndirimli Restoranlar";
-      case FoodType.getirGetirsin:
-        return "Getir Getirsin Restoranları";
-      case FoodType.algida:
-        return "Algida Lezzetleri";
-      case FoodType.yildiz:
-        return "Yıldız Restoranlar"; */
     }
   }
 
@@ -43,14 +31,6 @@ extension FoodTypeExtension on FoodTypeUp {
         return const Icon(Icons.access_time_filled_rounded);
       case FoodTypeUp.masa:
         return const Icon(Icons.flatware);
-      /* case FoodType.indirimli:
-        return "assets/getirindirimremove.png";
-      case FoodType.getirGetirsin:
-        return "assets/getirgetirsinremove.png";
-      case FoodType.algida:
-        return "assets/getiralgidaremove.png";
-      case FoodType.yildiz:
-        return "assets/getiryildizremove.png"; */
     }
   }
 }

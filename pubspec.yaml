@@ -99,6 +99,14 @@ flutter:
    - assets/getiryildizremove.png
    - assets/getiralgidaremove.png
    - assets/getiryemekAppBar.png
+   - assets/getirYemekBayBurger.png
+   - assets/getirYemekCajun.png
+   - assets/getirYemekDoner.jpeg
+   - assets/getirYemekHamburger.jpeg
+   - assets/getirYemekKofte.png
+   - assets/getirYemekKumru.jpeg
+   - assets/getirYemekPatso.png
+   - assets/getirYemekTost.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -5,7 +5,7 @@ enum FoodTypeDown {
   yildiz,
 }
 
-extension FoodTypeExtension on FoodTypeDown {
+extension FoodTypeDownExtension on FoodTypeDown {
   String get toText {
     switch (this) {
       case FoodTypeDown.indirimli:
