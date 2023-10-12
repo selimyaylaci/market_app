@@ -1,4 +1,4 @@
-enum Mudavim {
+enum Restaurant {
   hamburger,
   kofte,
   patso,
@@ -8,136 +8,136 @@ enum Mudavim {
   cajun,
 }
 
-extension MudavimExtension on Mudavim {
+extension RestaurantExtension on Restaurant {
   String get toText {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "Burger King, Merkez(Altıntop Mah)";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "Köfteci Yusuf, Merkezefendi(Kayalar)";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "Patsocu, Merkezefendi(Değirmenönü Mah.)";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "Kumrucu Özgür, Merkezefendi";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "Hatay Antakya Dönercisi, Merkezefendi(Altıntop)";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "Tom's Burger House, Pamukkale (Yunus Emre)";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "Cajun Corner, Pamukkale(Yunus Emre Mah.)";
     }
   }
 
   String get toImage {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "assets/getirYemekHamburger.jpeg";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "assets/getirYemekKofte.png";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "assets/getirYemekPatso.png";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "assets/getirYemekKumru.jpeg";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "assets/getirYemekDoner.jpeg";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "assets/getirYemekBayBurger.png";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "assets/getirYemekCajun.png";
     }
   }
 
   String get toLocation {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "2.0 km";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "4.3 km";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "2.0 km";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "2.5 km";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "1.3 km";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "5.5 km";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "5.4 km";
     }
   }
 
   String get toStar {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "4.0";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "3.6";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "4.4";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "4.2";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "4.1";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "5.0";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "4.2";
     }
   }
 
   String get toNumberOrders {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "(6000+)";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "(1250+)";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "(50+)";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "(400+)";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "(3000+)";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "(9000+)";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "(1000+)";
     }
   }
 
   String get toTimeAndMinPrice {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "50 dk·Min 140 TL";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "45 dk·Min 100 TL";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "30 dk·Min 70 TL";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "30 dk·Min 70 TL";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "40 dk·Min 90 TL";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "55 dk·Min 200 TL";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "45 dk·Min 400 TL";
     }
   }
 
   String get toDiscount {
     switch (this) {
-      case Mudavim.hamburger:
+      case Restaurant.hamburger:
         return "%25 indirim! - Sınırsız";
-      case Mudavim.kofte:
+      case Restaurant.kofte:
         return "%10 indirim! - Sınırsız";
-      case Mudavim.patso:
+      case Restaurant.patso:
         return "%20 indirim! - Sınırsız";
-      case Mudavim.kumru:
+      case Restaurant.kumru:
         return "%35 indirim! - Sınırsız";
-      case Mudavim.doner:
+      case Restaurant.doner:
         return "%40 indirim! - Sınırsız";
-      case Mudavim.tomsBurger:
+      case Restaurant.tomsBurger:
         return "%5 indirim! - Sınırsız";
-      case Mudavim.cajun:
+      case Restaurant.cajun:
         return "%15 indirim! - Sınırsız";
     }
   }
