@@ -1,10 +1,9 @@
-/// TODO: Export edilmeli.
+///////////// TODO: Export edilmeli.
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:market_app/feature/credential/view/_view_exports.dart';
-import 'package:market_app/feature/credential/view/widgets/carousel_image_item.dart';
-import 'package:market_app/feature/note/_note_exports.dart';
+import 'package:market_app/feature/credential/view/widgets/regular_item.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../../core/_core_exports.dart';
+import '../../../_feature_exports.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({super.key});
@@ -16,8 +15,9 @@ class FoodPage extends StatefulWidget {
 class _FoodPageState extends State<FoodPage> {
   /// TODO: Yeni bir controller oluşturup, onun içerisinden döndürmen lazım.
   final RxInt activeIndex = 0.obs;
-  final CarouselController controller = CarouselController();
-  final getirYemekImages = [
+  //final FoodController foodController = Get.put(FoodController());
+  final CarouselController carouselController = CarouselController();
+  final getirFoodImages = [
     "assets/getiryemek1.jpeg",
     "assets/getiryemek2.jpeg",
     "assets/getiryemek3.webp",
@@ -72,19 +72,21 @@ class _FoodPageState extends State<FoodPage> {
                     width: 8,
                   ),
 
-                  /// TODO: 330 ekrana göre değişebilir. Düzenle.
-                  Container(
-                    height: kToolbarHeight,
-                    width: 330,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: const Text(
-                      "skycity mh, 1234 Sokak,Bina no 2 kat: 18",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
+                  ////////// TODO: 330 ekrana göre değişebilir. Düzenle.
+                  Expanded(
+                    child: Container(
+                      height: kToolbarHeight,
+                      //width: 330,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: const Text(
+                        "skycity mh, 1234 Sokak,Bina no 2 kat: 18",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -113,25 +115,32 @@ class _FoodPageState extends State<FoodPage> {
                 background: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: CarouselSlider.builder(
-                    carouselController: controller,
-                    itemCount: getirYemekImages.length,
+                    carouselController:
+                        // serviceLocator<FoodController>().carouselController,
+                        carouselController,
+                    itemCount:
+                        //serviceLocator<FoodController>().getirFoodImages.length,
+                        getirFoodImages.length,
                     options: CarouselOptions(
                       height: 200,
                       autoPlay: true,
                       autoPlayInterval: const Duration(seconds: 3),
 
-                      /// TODO: Sistem genelinde bütün yapıların tiplerini başlarında belirt.
-                      /// TODO: Sistem geneli bütün ifadeler İNGİLİZCE olmak zorunda.
+                      ////////// TODO: Sistem genelinde bütün yapıların tiplerini başlarında belirt.
+                      ////////// TODO: Sistem geneli bütün ifadeler İNGİLİZCE olmak zorunda.
                       // onPageChanged: (index, reason) => activeIndex.value = index,
-                      onPageChanged: (final int index, final CarouselPageChangedReason reason) {
+                      onPageChanged: (final int index,
+                          final CarouselPageChangedReason reason) {
                         return activeIndex.value = index;
                       },
                       enlargeCenterPage: true,
                     ),
-                    itemBuilder: (context, index, realIndex) {
-                      final getirYemekImage = getirYemekImages[index];
+                    itemBuilder:
+                        (BuildContext context, int index, int realIndex) {
+                      final getirFoodImage = getirFoodImages[index];
+                      //serviceLocator<FoodController>().getirFoodImages[index];
                       return CarouselImageItem(
-                        image: getirYemekImage,
+                        image: getirFoodImage,
                       );
                     },
                   ),
@@ -152,19 +161,33 @@ class _FoodPageState extends State<FoodPage> {
                           borderRadius: BorderRadius.circular(20.0),
                           color: Colors.white,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            FoodTypeUp.values.length,
-                            (index) {
-                              /// TODO: Burası yanlış. Tek tipte toplanacak.
-                              final FoodTypeUp foodTypeUp = FoodTypeUp.values[index];
-                             // final FoodTypeDown foodTypeDown = FoodTypeDown.values[index];
+                        child: /* Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: FoodTypeUp.values.map((foodTypeUp) {
                               return FoodSuggestionsItem(
                                 icons: foodTypeUp.toIcons,
                                 image: foodTypeUp.toImage,
                                 text: foodTypeUp.toText,
                               );
+                            }).toList(),
+                          ) */
+
+                            Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            FoodTypeUp.values.length,
+                            (index) {
+                              /// TODO: Burası yanlış. Tek tipte toplanacak.
+                              final FoodTypeUp foodTypeUp =
+                                  FoodTypeUp.values[index];
+                              final FoodTypeDown foodTypeDown =
+                                  FoodTypeDown.values[index];
+                              return buildFoodType(foodTypeUp, foodTypeDown);
+                              /*  FoodSuggestionsItem(
+                                icons: foodTypeUp.toIcons,
+                                image: foodTypeUp.toImage,
+                                text: foodTypeUp.toText,
+                              ); */
                             },
                           ),
                         ),
@@ -189,7 +212,8 @@ class _FoodPageState extends State<FoodPage> {
                                     hintText: "Canın ne çekiyor ?",
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      borderSide: const BorderSide(color: Colors.transparent),
+                                      borderSide: const BorderSide(
+                                          color: Colors.transparent),
                                     ),
                                   ),
                                 ),
@@ -206,8 +230,8 @@ class _FoodPageState extends State<FoodPage> {
                                     borderRadius: BorderRadius.circular(10.0),
                                     color: Colors.white,
                                   ),
-                                  child: Column(
-                                    children: const [
+                                  child: const Column(
+                                    children: [
                                       Icon(
                                         Icons.filter_list_rounded,
                                         color: Colors.deepPurple,
@@ -258,7 +282,8 @@ class _FoodPageState extends State<FoodPage> {
                                       ),
                                     ],
                                   ),
-                                  const Text("Her 3 siparişin ardından 75TL indirim!"),
+                                  const Text(
+                                      "Her 3 siparişin ardından 75TL indirim!"),
                                   const SizedBox(
                                     height: 3,
                                   ),
@@ -272,49 +297,35 @@ class _FoodPageState extends State<FoodPage> {
                                           selectedColor: Colors.deepPurple,
                                           unselectedColor: Colors.grey,
 
-                                          /// TODO: Kontrolü index üzerinden yapman lazım.
-                                          /// Widgetları iki kere oluşturmak yerine sadece renkleri kontrol et.
-                                          customStep: (index, color, _) => color == Colors.deepPurple
-                                              ? Container(
-                                                  margin: const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
+                                          /////// TODO: Kontrolü index üzerinden yapman lazım.
+                                          //////// Widgetları iki kere oluşturmak yerine sadece renkleri kontrol et.
+                                          customStep: (int index, color, _) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                left: 5,
+                                                right: 5,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: Color.fromARGB(
+                                                        255, 223, 213, 249),
+                                                    spreadRadius: 3,
+                                                    offset: Offset(0, 10),
                                                   ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        color: Color.fromARGB(255, 223, 213, 249),
-                                                        spreadRadius: 3,
-                                                        offset: Offset(0, 10),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  child: const Icon(
-                                                    Icons.diamond,
-                                                    color: Colors.deepPurple,
-                                                  ),
-                                                )
-                                              : Container(
-                                                  margin: const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        color: Color.fromARGB(255, 239, 234, 255),
-                                                        spreadRadius: 3,
-                                                        offset: Offset(0, 10),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  child: const Icon(
-                                                    Icons.diamond,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
+                                                ],
+                                              ),
+                                              child: Icon(
+                                                Icons.diamond,
+                                                color:
+                                                    color == Colors.deepPurple
+                                                        ? Colors.deepPurple
+                                                        : Colors.grey,
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                       const Padding(
@@ -336,11 +347,10 @@ class _FoodPageState extends State<FoodPage> {
                       ),
                       Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Expanded(
                             child: Text(
                               "Müdavim Restoranları",
                               style: TextStyle(
@@ -349,26 +359,17 @@ class _FoodPageState extends State<FoodPage> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 115,
-                            ),
-                            child: Text(
-                              "Tümünü Gör (5)",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
+                          const Text(
+                            "Tümünü Gör (5)",
+                            style: TextStyle(
+                              color: Colors.deepPurple,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.deepPurple,
-                              ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.deepPurple,
                             ),
                           ),
                         ],
@@ -380,18 +381,18 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant = Restaurant.values[index];
-                            return buildMudavim(restaurant);
+                            //final Restaurant restaurant =Restaurant.values[index];
+                            return RegularItem();
+                            //buildMudavim(restaurant);
                           },
                         ),
                       ),
                       Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Expanded(
                             child: Text(
                               "Limitsiz İndirimler",
                               style: TextStyle(
@@ -400,26 +401,17 @@ class _FoodPageState extends State<FoodPage> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 140,
-                            ),
-                            child: Text(
-                              "Tümünü Gör (5)",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
+                          const Text(
+                            "Tümünü Gör (5)",
+                            style: TextStyle(
+                              color: Colors.deepPurple,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.deepPurple,
-                              ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.deepPurple,
                             ),
                           ),
                         ],
@@ -431,18 +423,18 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant = Restaurant.values[index];
+                            final Restaurant restaurant =
+                                Restaurant.values[index];
                             return buildLimit(restaurant);
                           },
                         ),
                       ),
                       Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Expanded(
                             child: Text(
                               "Zincir Restoranlar",
                               style: TextStyle(
@@ -451,26 +443,17 @@ class _FoodPageState extends State<FoodPage> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 140,
-                            ),
-                            child: Text(
-                              "Tümünü Gör (5)",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
+                          const Text(
+                            "Tümünü Gör (5)",
+                            style: TextStyle(
+                              color: Colors.deepPurple,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.deepPurple,
-                              ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.deepPurple,
                             ),
                           ),
                         ],
@@ -482,18 +465,18 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant = Restaurant.values[index];
+                            final Restaurant restaurant =
+                                Restaurant.values[index];
                             return buildZincir(restaurant);
                           },
                         ),
                       ),
                       Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Expanded(
                             child: Text(
                               "Mutfaklar",
                               style: TextStyle(
@@ -502,26 +485,17 @@ class _FoodPageState extends State<FoodPage> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 190,
-                            ),
-                            child: Text(
-                              "Tümünü Gör (5)",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
+                          const Text(
+                            "Tümünü Gör (5)",
+                            style: TextStyle(
+                              color: Colors.deepPurple,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.deepPurple,
-                              ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.deepPurple,
                             ),
                           ),
                         ],
@@ -533,18 +507,21 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Categories.values.length,
                           itemBuilder: (context, index) {
-                            final Categories categories = Categories.values[index];
+                            final Categories categories =
+                                Categories.values[index];
                             return buildFoodKitchen(categories);
                           },
                         ),
                       ),
-                      Row(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 25,
-                              left: 18,
-                            ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
                             child: Text(
                               "Tüm Restoranlar (7)",
                               style: TextStyle(
@@ -553,65 +530,61 @@ class _FoodPageState extends State<FoodPage> {
                               ),
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 20,
-                              left: 90,
-                            ),
-                            child: Text(
-                              "Görünüm",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
+                          Text(
+                            "Görünüm",
+                            style: TextStyle(
+                              color: Colors.grey,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 10,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: Row(
-                              children: [
-                                /// TODO: app_icon_button
-                                Container(
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      topLeft: Radius.circular(10),
-                                    ),
-                                    color: Colors.white,
+                          Row(
+                            children: [
+                              /// TODO: app_icon_button
+                              AppIconButton(),
+                              /*  Container(
+                                height: 40,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    topLeft: Radius.circular(10),
                                   ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.line_style,
-                                      color: Colors.grey,
-                                    ),
+                                  color: Colors.white,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.line_style,
+                                    color: Colors.grey,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  height: 40,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                    color: Colors.white,
+                              ), */
+                              SizedBox(
+                                width: 5,
+                              ),
+                              AppIconButtonTwo(),
+                              /*  Container(
+                                height: 40,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(10),
+                                    topRight: Radius.circular(10),
                                   ),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.line_weight,
-                                      color: Colors.deepPurple,
-                                    ),
+                                  color: Colors.white,
+                                ),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.line_weight,
+                                    color: Colors.deepPurple,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ), */
+                            ],
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                         ],
                       ),
@@ -625,7 +598,8 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.vertical,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant = Restaurant.values[index];
+                            final Restaurant restaurant =
+                                Restaurant.values[index];
                             return buildTumRestoranlar(restaurant);
                           },
                         ),
@@ -652,7 +626,7 @@ class _FoodPageState extends State<FoodPage> {
   //   );
   // }
 
-  /*  buildFoodType(FoodTypeUp foodTypeUp, FoodTypeDown foodTypeDown) {
+  buildFoodType(FoodTypeUp foodTypeUp, FoodTypeDown foodTypeDown) {
     return Column(
       children: [
         Padding(
@@ -667,7 +641,7 @@ class _FoodPageState extends State<FoodPage> {
                   borderRadius: BorderRadius.circular(10.0),
                   color: const Color.fromARGB(255, 213, 205, 239),
                 ),
-                child: foodTypeUp.toImage,
+                child: foodTypeUp.toIcons,
               ),
               const SizedBox(
                 height: 15,
@@ -707,7 +681,7 @@ class _FoodPageState extends State<FoodPage> {
       ],
     );
   }
- */
+
   Widget buildMudavim(Restaurant restaurant) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
@@ -743,8 +717,8 @@ class _FoodPageState extends State<FoodPage> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Icon(
                     Icons.diamond,
                     color: Colors.deepPurple,
@@ -903,8 +877,8 @@ class _FoodPageState extends State<FoodPage> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Icon(
                     Icons.diamond,
                     color: Colors.deepPurple,
@@ -1103,7 +1077,9 @@ class _FoodPageState extends State<FoodPage> {
                           color: Colors.deepPurple,
                         ),
                   Text(
-                    restaurant == Restaurant.doner ? "Yerel Zincir Restoranlar" : "Bu Ay Müdavim'de",
+                    restaurant == Restaurant.doner
+                        ? "Yerel Zincir Restoranlar"
+                        : "Bu Ay Müdavim'de",
                     style: const TextStyle(
                       color: Colors.deepPurple,
                     ),
@@ -1348,7 +1324,9 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                           Text(
                             restaurant.toStar,
-                            style: const TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
                             width: 5,

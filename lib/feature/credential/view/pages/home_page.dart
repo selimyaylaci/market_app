@@ -37,18 +37,19 @@ class _HomePageState extends State<HomePage> {
               height: 57,
               color: Colors.white,
             ),
-            Container(
-              height: kToolbarHeight,
-              width: 280,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: const Text(
-                "skycity mh, 1234 Sokak,Bina no 2",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
+            Expanded(
+              child: Container(
+                height: kToolbarHeight,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: const Text(
+                  "skycity mh, 1234 Sokak,Bina no 2",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
@@ -126,22 +127,23 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   width: 50,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white,
-                  ),
-                  width: 200,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.search,
-                        color: Colors.deepPurple,
-                      ),
-                      hintText: "Getir'de ara",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(color: Colors.deepPurple),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.deepPurple,
+                        ),
+                        hintText: "Getir'de ara",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(color: Colors.deepPurple),
+                        ),
                       ),
                     ),
                   ),
@@ -152,16 +154,18 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: StaggeredGrid.count(
-                crossAxisCount: 4,
-                mainAxisSpacing: 4,
-                crossAxisSpacing: 4,
-                children: List.generate(
-                  SameCodeType.values.length,
-                  (index) {
-                    final SameCodeType sameCodeType = SameCodeType.values[index];
-                    return buildSameCode(sameCodeType);
-                  },
+              child: SingleChildScrollView(
+                child: StaggeredGrid.count(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4,
+                  children: List.generate(
+                    SameCodeType.values.length,
+                    (index) {
+                      final SameCodeType sameCodeType = SameCodeType.values[index];
+                      return buildSameCode(sameCodeType);
+                    },
+                  ),
                 ),
               ),
             ),
