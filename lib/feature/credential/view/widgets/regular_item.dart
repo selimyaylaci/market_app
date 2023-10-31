@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:market_app/feature/note/domain/entities/getir_yemek_restaurant.dart';
 
 class RegularItem extends StatelessWidget {
-  RegularItem({super.key});
+  const RegularItem({super.key, required this.restaurant, this.discount});
 
-  final Restaurant restaurant = Restaurant.values.first;
+  final Restaurant restaurant;
+  final discount;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,35 @@ class RegularItem extends StatelessWidget {
               ),
             ),
           ),
+          if (discount)
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 120,
+                top: 20,
+              ),
+              child: Container(
+                width: 180,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.discount,
+                      color: Colors.deepPurple,
+                    ),
+                    Text(
+                      restaurant.toDiscount,
+                      style: const TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(
               left: 20,

@@ -382,7 +382,9 @@ class _FoodPageState extends State<FoodPage> {
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
                             //final Restaurant restaurant =Restaurant.values[index];
-                            return RegularItem();
+                            return RegularItem(
+                              restaurant: Restaurant.values[index],
+                            );
                             //buildMudavim(restaurant);
                           },
                         ),
