@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:market_app/feature/note/domain/entities/getir_yemek_restaurant.dart';
 
-class RegularItem extends StatelessWidget {
-  const RegularItem({super.key, required this.restaurant, this.discount});
+class ChainItem extends StatelessWidget {
+  const ChainItem({super.key, required this.restaurant});
 
   final Restaurant restaurant;
-  final dynamic discount;
 
   @override
   Widget build(BuildContext context) {
@@ -37,21 +36,28 @@ class RegularItem extends StatelessWidget {
               top: 20,
             ),
             child: Container(
-              width: 90,
+              width: restaurant == Restaurant.doner ? 180 : 150,
               height: 40,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(
-                    Icons.diamond,
-                    color: Colors.deepPurple,
-                  ),
+                  restaurant == Restaurant.doner
+                      ? const Icon(
+                          Icons.card_giftcard,
+                          color: Colors.deepPurple,
+                        )
+                      : const Icon(
+                          Icons.diamond,
+                          color: Colors.deepPurple,
+                        ),
                   Text(
-                    "Müdavim",
-                    style: TextStyle(
+                    restaurant == Restaurant.doner
+                        ? "Yerel Zincir Restoranlar"
+                        : "Bu Ay Müdavim'de",
+                    style: const TextStyle(
                       color: Colors.deepPurple,
                     ),
                   ),
@@ -59,35 +65,6 @@ class RegularItem extends StatelessWidget {
               ),
             ),
           ),
-          if (discount != null)
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 120,
-                top: 20,
-              ),
-              child: Container(
-                width: 180,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.yellow,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.discount,
-                      color: Colors.deepPurple,
-                    ),
-                    Text(
-                      restaurant.toDiscount,
-                      style: const TextStyle(
-                        color: Colors.deepPurple,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           Padding(
             padding: const EdgeInsets.only(
               left: 20,

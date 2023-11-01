@@ -1,6 +1,5 @@
 ///////////// TODO: Export edilmeli.
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:market_app/feature/credential/view/widgets/regular_item.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../../../core/_core_exports.dart';
 import '../../../_feature_exports.dart';
@@ -384,6 +383,7 @@ class _FoodPageState extends State<FoodPage> {
                             //final Restaurant restaurant =Restaurant.values[index];
                             return RegularItem(
                               restaurant: Restaurant.values[index],
+                              discount: null,
                             );
                             //buildMudavim(restaurant);
                           },
@@ -427,7 +427,11 @@ class _FoodPageState extends State<FoodPage> {
                           itemBuilder: (context, index) {
                             final Restaurant restaurant =
                                 Restaurant.values[index];
-                            return buildLimit(restaurant);
+                            return RegularItem(
+                              restaurant: Restaurant.values[index],
+                              discount: restaurant.hashCode,
+                            );
+                            //buildLimit(restaurant);
                           },
                         ),
                       ),
@@ -467,9 +471,11 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant =
-                                Restaurant.values[index];
-                            return buildZincir(restaurant);
+                            //final Restaurant restaurant =Restaurant.values[index];
+                            return ChainItem(
+                              restaurant: Restaurant.values[index],
+                            );
+                            //buildZincir(restaurant);
                           },
                         ),
                       ),
@@ -509,9 +515,11 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: Categories.values.length,
                           itemBuilder: (context, index) {
-                            final Categories categories =
-                                Categories.values[index];
-                            return buildFoodKitchen(categories);
+                            //final Categories categories =Categories.values[index];
+                            return FoodKitchenItem(
+                              categories: Categories.values[index],
+                            );
+                            //buildFoodKitchen(categories);
                           },
                         ),
                       ),
@@ -600,9 +608,11 @@ class _FoodPageState extends State<FoodPage> {
                           scrollDirection: Axis.vertical,
                           itemCount: Restaurant.values.length,
                           itemBuilder: (context, index) {
-                            final Restaurant restaurant =
-                                Restaurant.values[index];
-                            return buildTumRestoranlar(restaurant);
+                            //final Restaurant restaurant = Restaurant.values[index];
+                            return AllRestaurants(
+                              restaurant: Restaurant.values[index],
+                            );
+                            //buildTumRestoranlar(restaurant);
                           },
                         ),
                       ),
@@ -684,7 +694,7 @@ class _FoodPageState extends State<FoodPage> {
     );
   }
 
-  Widget buildMudavim(Restaurant restaurant) {
+  /* Widget buildMudavim(Restaurant restaurant) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
@@ -842,9 +852,9 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
-  }
+  } */
 
-  Widget buildLimit(Restaurant restaurant) {
+  /*  Widget buildLimit(Restaurant restaurant) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
@@ -1030,9 +1040,9 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
-  }
+  } */
 
-  Widget buildZincir(Restaurant restaurant) {
+  /* Widget buildZincir(Restaurant restaurant) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
@@ -1197,9 +1207,9 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
-  }
+  } */
 
-  Widget buildFoodKitchen(Categories categories) {
+  /*  Widget buildFoodKitchen(Categories categories) {
     return Container(
       width: 150,
       height: 75,
@@ -1229,9 +1239,9 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
-  }
+  } */
 
-  Widget buildTumRestoranlar(Restaurant restaurant) {
+  /* Widget buildTumRestoranlar(Restaurant restaurant) {
     return Container(
       margin: const EdgeInsets.only(
         top: 10,
@@ -1270,9 +1280,9 @@ class _FoodPageState extends State<FoodPage> {
                     borderRadius: BorderRadius.circular(10),
                     color: const Color.fromARGB(255, 210, 202, 202),
                   ),
-                  child: Row(
+                  child: const Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.diamond,
                         color: Colors.deepPurple,
@@ -1386,5 +1396,5 @@ class _FoodPageState extends State<FoodPage> {
         ],
       ),
     );
-  }
+  } */
 }
