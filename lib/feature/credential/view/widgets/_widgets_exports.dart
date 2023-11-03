@@ -6,3 +6,4 @@ export 'regular_item.dart';
 export 'chain_item.dart';
 export 'all_restaurants_item.dart';
 export 'food_kitchen_item.dart';
+export 'types_titles_item.dart';

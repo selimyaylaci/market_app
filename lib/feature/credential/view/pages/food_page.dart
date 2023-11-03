@@ -75,7 +75,6 @@ class _FoodPageState extends State<FoodPage> {
                   Expanded(
                     child: Container(
                       height: kToolbarHeight,
-                      //width: 330,
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
                         color: Colors.white,
@@ -153,25 +152,13 @@ class _FoodPageState extends State<FoodPage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.all(8.0),
-                        // width: 398,
                         height: 300,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           color: Colors.white,
                         ),
-                        child: /* Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: FoodTypeUp.values.map((foodTypeUp) {
-                              return FoodSuggestionsItem(
-                                icons: foodTypeUp.toIcons,
-                                image: foodTypeUp.toImage,
-                                text: foodTypeUp.toText,
-                              );
-                            }).toList(),
-                          ) */
-
-                            Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(
                             FoodTypeUp.values.length,
@@ -292,7 +279,6 @@ class _FoodPageState extends State<FoodPage> {
                                         child: StepProgressIndicator(
                                           totalSteps: 3,
                                           currentStep: 2,
-                                          //size: 50,
                                           selectedColor: Colors.deepPurple,
                                           unselectedColor: Colors.grey,
 
@@ -344,34 +330,11 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Müdavim Restoranları",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            "Tümünü Gör (5)",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                        ],
+                      const TypeTitlesItem(
+                        title: "Müdavim Restoranları",
+                        title2: null,
+                        title3: null,
+                        title4: null,
                       ),
                       SizedBox(
                         height: 280,
@@ -385,38 +348,14 @@ class _FoodPageState extends State<FoodPage> {
                               restaurant: Restaurant.values[index],
                               discount: null,
                             );
-                            //buildMudavim(restaurant);
                           },
                         ),
                       ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Limitsiz İndirimler",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            "Tümünü Gör (5)",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                        ],
+                      const TypeTitlesItem(
+                        title: null,
+                        title2: "Limitsiz İndirimler",
+                        title3: null,
+                        title4: null,
                       ),
                       SizedBox(
                         height: 280,
@@ -431,38 +370,14 @@ class _FoodPageState extends State<FoodPage> {
                               restaurant: Restaurant.values[index],
                               discount: restaurant.hashCode,
                             );
-                            //buildLimit(restaurant);
                           },
                         ),
                       ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Zincir Restoranlar",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            "Tümünü Gör (5)",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                        ],
+                      const TypeTitlesItem(
+                        title: null,
+                        title2: null,
+                        title3: "Zincir Restoranlar",
+                        title4: null,
                       ),
                       SizedBox(
                         height: 280,
@@ -475,38 +390,14 @@ class _FoodPageState extends State<FoodPage> {
                             return ChainItem(
                               restaurant: Restaurant.values[index],
                             );
-                            //buildZincir(restaurant);
                           },
                         ),
                       ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Mutfaklar",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            "Tümünü Gör (5)",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                        ],
+                      const TypeTitlesItem(
+                        title: null,
+                        title2: null,
+                        title3: null,
+                        title4: "Mutfaklar",
                       ),
                       SizedBox(
                         height: 150,
@@ -519,7 +410,6 @@ class _FoodPageState extends State<FoodPage> {
                             return FoodKitchenItem(
                               categories: Categories.values[index],
                             );
-                            //buildFoodKitchen(categories);
                           },
                         ),
                       ),
@@ -551,46 +441,12 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                           Row(
                             children: [
-                              /// TODO: app_icon_button
+                              ////////// TODO: app_icon_button
                               AppIconButton(),
-                              /*  Container(
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10),
-                                    topLeft: Radius.circular(10),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.line_style,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ), */
                               SizedBox(
                                 width: 5,
                               ),
                               AppIconButtonTwo(),
-                              /*  Container(
-                                height: 40,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.line_weight,
-                                    color: Colors.deepPurple,
-                                  ),
-                                ),
-                              ), */
                             ],
                           ),
                           SizedBox(
@@ -612,7 +468,6 @@ class _FoodPageState extends State<FoodPage> {
                             return AllRestaurants(
                               restaurant: Restaurant.values[index],
                             );
-                            //buildTumRestoranlar(restaurant);
                           },
                         ),
                       ),
@@ -626,17 +481,6 @@ class _FoodPageState extends State<FoodPage> {
       ),
     );
   }
-
-  // Widget buildYemekImage(String getirYemekImage, int index) {
-  //   return ClipRRect(
-  //     borderRadius: BorderRadius.circular(16.0),
-  //     child: Image.asset(
-  //       getirYemekImage,
-  //       fit: BoxFit.cover,
-  //       width: 380,
-  //     ),
-  //   );
-  // }
 
   buildFoodType(FoodTypeUp foodTypeUp, FoodTypeDown foodTypeDown) {
     return Column(
@@ -693,708 +537,4 @@ class _FoodPageState extends State<FoodPage> {
       ],
     );
   }
-
-  /* Widget buildMudavim(Restaurant restaurant) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              bottom: 70,
-              left: 10,
-              right: 10,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                restaurant.toImage,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 20,
-            ),
-            child: Container(
-              width: 90,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Row(
-                children: [
-                  Icon(
-                    Icons.diamond,
-                    color: Colors.deepPurple,
-                  ),
-                  Text(
-                    "Müdavim",
-                    style: TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 165,
-            ),
-            child: Container(
-              width: 75,
-              height: 32,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                  ),
-                  Text(
-                    restaurant.toLocation,
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  top: 220,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      child: Text(
-                        restaurant.toText,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.deepPurple,
-                          ),
-                          Text(
-                            restaurant.toStar,
-                            style: const TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          Text(
-                            restaurant.toNumberOrders,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 245),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.r_mobiledata_rounded,
-                    ),
-                    Text(
-                      restaurant.toTimeAndMinPrice,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  } */
-
-  /*  Widget buildLimit(Restaurant restaurant) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              bottom: 70,
-              left: 10,
-              right: 10,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                restaurant.toImage,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 20,
-            ),
-            child: Container(
-              width: 90,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Row(
-                children: [
-                  Icon(
-                    Icons.diamond,
-                    color: Colors.deepPurple,
-                  ),
-                  Text(
-                    "Müdavim",
-                    style: TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 120,
-              top: 20,
-            ),
-            child: Container(
-              width: 180,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.yellow,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.discount,
-                    color: Colors.deepPurple,
-                  ),
-                  Text(
-                    restaurant.toDiscount,
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 165,
-            ),
-            child: Container(
-              width: 75,
-              height: 32,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                  ),
-                  Text(
-                    restaurant.toLocation,
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  top: 220,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      child: Text(
-                        restaurant.toText,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.deepPurple,
-                          ),
-                          Text(
-                            restaurant.toStar,
-                            style: const TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          Text(
-                            restaurant.toNumberOrders,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 245),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.r_mobiledata_rounded,
-                    ),
-                    Text(
-                      restaurant.toTimeAndMinPrice,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  } */
-
-  /* Widget buildZincir(Restaurant restaurant) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              bottom: 70,
-              left: 10,
-              right: 10,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                restaurant.toImage,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 20,
-            ),
-            child: Container(
-              width: restaurant == Restaurant.doner ? 180 : 150,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  restaurant == Restaurant.doner
-                      ? const Icon(
-                          Icons.card_giftcard,
-                          color: Colors.deepPurple,
-                        )
-                      : const Icon(
-                          Icons.diamond,
-                          color: Colors.deepPurple,
-                        ),
-                  Text(
-                    restaurant == Restaurant.doner
-                        ? "Yerel Zincir Restoranlar"
-                        : "Bu Ay Müdavim'de",
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 165,
-            ),
-            child: Container(
-              width: 75,
-              height: 32,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                  ),
-                  Text(
-                    restaurant.toLocation,
-                    style: const TextStyle(
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 25,
-                  top: 220,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      child: Text(
-                        restaurant.toText,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.deepPurple,
-                          ),
-                          Text(
-                            restaurant.toStar,
-                            style: const TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          Text(
-                            restaurant.toNumberOrders,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 245),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.r_mobiledata_rounded,
-                    ),
-                    Text(
-                      restaurant.toTimeAndMinPrice,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  } */
-
-  /*  Widget buildFoodKitchen(Categories categories) {
-    return Container(
-      width: 150,
-      height: 75,
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: Image.asset(categories.toImage),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 12,
-              top: 120,
-            ),
-            child: Text(
-              categories.toText,
-              style: const TextStyle(
-                fontSize: 13,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  } */
-
-  /* Widget buildTumRestoranlar(Restaurant restaurant) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 10,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 209, 197, 197),
-                  ),
-                  width: 100,
-                  height: 100,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      restaurant.toImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 90,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 210, 202, 202),
-                  ),
-                  child: const Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.diamond,
-                        color: Colors.deepPurple,
-                      ),
-                      Text(
-                        "Müdavim",
-                        style: TextStyle(color: Colors.deepPurple),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-          Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      left: 120,
-                    ),
-                    child: SizedBox(
-                      width: 140,
-                      child: Text(
-                        restaurant.toText,
-                        style: const TextStyle(fontSize: 20),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      left: 10,
-                    ),
-                    child: Container(
-                      width: 115,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.star_rate,
-                            color: Colors.deepPurple,
-                          ),
-                          Text(
-                            restaurant.toStar,
-                            style: const TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5),
-                            child: Text(
-                              restaurant.toNumberOrders,
-                              style: const TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 100, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.location_on,
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      restaurant.toLocation,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  right: 30,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.r_mobiledata,
-                    ),
-                    Text(
-                      restaurant.toTimeAndMinPrice,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  } */
 }
